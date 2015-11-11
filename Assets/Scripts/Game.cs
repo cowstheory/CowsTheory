@@ -12,19 +12,23 @@ public class Game : MonoBehaviour{
     public List<Player> players;
     public List<Bullet> bullets;
 
-	public GameObject go;
+	public List<GameObject> player_objects;
+
+	public GameObject he_man, skeletor;
 	//Powerup[] powerup;
 
     public Game () {
         players = new List<Player>();
         bullets = new List<Bullet>();
-//		b = GameObject.Find("Cube");
-//		b.SetActive (false);
-//		Instantiate(b);
     }
 
 	void Start(){
-		GameObject p = (GameObject) Instantiate (go);
+		GameObject p1 = (GameObject)Instantiate(he_man);
+		GameObject p2 = (GameObject)Instantiate(skeletor);
+		p1.transform.position = new Vector3 (-4,2,0);
+		p2.transform.position = new Vector3 (4,2,0);
+		player_objects.Add(p1);
+		player_objects.Add(p2);
 	}
 
     public void reset() {
