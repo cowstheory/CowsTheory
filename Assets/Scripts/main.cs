@@ -14,7 +14,6 @@ public class main : MonoBehaviour {
         game.draw();
     }
     
-    
     void Start () {
         game = new Game();
         loadImagesAndModels();

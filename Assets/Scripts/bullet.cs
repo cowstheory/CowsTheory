@@ -40,10 +40,11 @@ class Bullet {
             this.markedForRemoval = true;
             return 0;
         }
+        
             
         //Collision detection with players
-        for player in game.players {
-            if (this.owner != player.id and player.po &&
+        foreach (Player player in game.players) {
+            if (this.owner != player.id && player.po &&
                     (this.po.pos-player.po.pos).len() < con.COLLISION_DIST) {
                 player.po.hp -= this.damage;
                     

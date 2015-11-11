@@ -1,12 +1,17 @@
 
 
 class Player() {
+    PhysicsObject po;
+    int id;
+    Gun[] guns;
+    int livesLeft;
+    
     Player(int id_) {
-        PhysicsObject po = PhysicsObject(m=50.0, ref Player this);
+        po = new PhysicsObject(m=50.0, ref Player this);
         po.invulnerable = False;
-        int id = _id;
-        Gun[] guns;
-        int livesLeft = con.NUM_PLAYER_LIVES;
+        id = _id;
+        guns;
+        livesLeft = con.NUM_PLAYER_LIVES;
         
         respawn(game);
     }
@@ -20,6 +25,9 @@ class Player() {
         
         po.gravityFactor = con.GRAVITY_FACTOR_PLAYER_DEFAULT;
         
+        //TODO: This... isn't right. Fix the math
+        //  (e.g. spawn at a circle, with a velocity perpendicular to
+        //  the vector between the player and the black hole)
         //spawn in a circle around the middle
         int angle = 2.0F*math.PI*random.random();
         float ringRadius = 50.0F;
@@ -68,6 +76,7 @@ class Player() {
         updateControls(game);
         
     void updateControls(ref Game game) {
+        //TODO: Add controls. Use this.id to see which control corresponds to which player
         /*self.timeUntilNextShot = max(0, self.timeUntilNextShot-1)
         self.timeUntilNextShot2 = max(0, self.timeUntilNextShot2-1)
         
@@ -183,13 +192,14 @@ class Player() {
     } //end of updateControls
 
     void draw(ref Game game) {
+        //TODO: Draw player sprite to screen
         /*
         x, y = self.po.pos.x, self.po.pos.y
         
         area = getAreaFromId(self.id, self.w, self.h)
         surface.blit(img["players"], dest=(x, y), area=area)
         
-        #draw text above head
+        //TODO: Draw text above head
         if self.po:
             percentText = "%d%%" % (100.0*(self.po.gravityFactor - 1.0))
         else:

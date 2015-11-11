@@ -1,7 +1,6 @@
 
 public class Game {
-    bool exit = False
-    gameTime = 0
+    bool exit = False;
     //gravity = V3(con.GRAVITY_X, con.GRAVITY_Y)
     
     float blackHoleSize = con.BLACK_HOLE_START_SIZE;
@@ -14,80 +13,87 @@ public class Game {
         
     }
     
-    def reset(self) {
-        for player in self.players:
-            if player.po:
-                player.po.hp = player.po.maxHp
+    void reset() {
+        foreach (Player player in game.players) {
+            player.po.hp = player.po.maxHp;
+        }
         
-        self.__init__()
-        print "Game was reset!"
+        this.__init__();
+        debug.Log("Game was reset!");
     }
         
     void update() {
-        self.gameTime += 1
-        self.dt = 1/60.
+        gameTime += 1;
+        dt = 1/60;
         
-        if self.gameTime % 30 == 0: self.blackHoleSize += 1
-        elif self.gameTime % 30 == 5: self.blackHoleSize -= 1
+        //TODO: oscillate black hole properly
+        /*if this.gameTime % 30 == 0: this.blackHoleSize += 1
+        elif this.gameTime % 30 == 5: this.blackHoleSize -= 1*/
             
-        #Quicker gameplay: continously increase all player's gravityFactor
-        #if self.gameTime % 15 == 0:
-        #    for player in self.players:
-        #        player.po.gravityFactor += 0.01
+        /*#Quicker gameplay: continously increase all player's gravityFactor
+        #if this.gameTime % 15 == 0:
+        #    for player in this.players:
+        #        player.po.gravityFactor += 0.01*/
         
-        if self.gameTime > 1 and self.gameTime % con.POWERUP_SPAWN_DELAY == 0:
-            p = Powerup()
-            p.respawn(self)
-            self.powerups.append(p)
+        if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
+            p = new Powerup();
+            p.respawn(this);
+            this.powerups.append(p);
+        }
         
-        for powerup in self.powerups:
-            powerup.update(self, key)
-        
-        for bullet in self.bullets:
-            bullet.update(self, key)
-        
-        self.bullets = filter(lambda x: not x.markedForRemoval, self.bullets)
-        self.powerups = filter(lambda x: not x.markedForRemoval, self.powerups)
             
-        for player in self.players:
-            player.update(self, key)
+        foreach (Powerup powerup in this.powerups) {
+            powerup.update(this);
+        }
+                
         
-        self.players = filter(lambda x: x.livesLeft > 0, self.players)
+        foreach (Bullet bullet in this.powerups) {
+            bullet.update(this);
+        }
+        
+        /* TODO: remove bullets and powerups that are marked for removal
+        this.bullets = filter(lambda x: not x.markedForRemoval, this.bullets)
+        this.powerups = filter(lambda x: not x.markedForRemoval, this.powerups)*/
+        
+        foreach (Player player in game.players) {
+            player.update(this. key);
+        }
+        
+        /* TODO: remove players that are out of lives (same as just above this)
+        //this.players = filter(lambda x: x.livesLeft > 0, this.players)
     }
             
     void draw() {
+        /*
         for i in range(1,con.BOTTOM_HEIGHT+1) {
             pygame.draw.line(surface, con.GREEN,
-                    (0           , self.screenh-i),
-                    (self.screenw, self.screenh-i))
+                    (0           , this.screenh-i),
+                    (this.screenw, this.screenh-i))
         }
         
-        for bullet in self.bullets {
-            bullet.draw(self, surface, img, fnt)
+        */
+        foreach (Bullet bullet in this.bullets) {
+            bullet.draw(this);
         }
             
-        for p in self.players {
-            p.draw(self, surface, img, fnt)
+        foreach (Player player in this.players) {
+            p.draw(this);
         }
             
-        for powerup in self.powerups {
-            powerup.draw(self, surface, img, fnt)
-        }
+        /* TODO: uncomment when Powerup is done
+        foreach (Powerup powerup in this.powerups) {
+            powerup.draw(this);
+        }*/
 
         /*
+        //TODO: draw black hole
         pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
             int(self.blackHoleSize), 0)
-        #draw event horizon
+        //TODO: draw event horizon
         pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
             con.EVENT_HORIZON_RADIUS, 1)
         
-        #draw text
-        #percentText = ", ".join(["p%s: %s %%" % \
-        #        (player.id + 1, 100*(player.po.gravityFactor - 1.0))
-        #        for player in self.players])
-        #percentTextSurface = fnt.render(percentText, False, con.FONT_COLOR)
-        #surface.blit(percentTextSurface, (5,self.screenh - 40))
-        
+        //TODO: visualize number of lives left for each player
         #draw number of lives left
         numPanes = len(self.players)
         paneWidth = self.screenw / float(max(1, numPanes))
@@ -108,8 +114,9 @@ public class Game {
             }
         }
         */
+    }
 
     Vector3 vectorToMiddle(Vector3 otherVec) {
-        return Vector3(self.screenw/2.0, self.screenh/2.0) - otherVec;
+        return Vector3(this.screenw/2.0, this.screenh/2.0) - otherVec;
     }
 }
