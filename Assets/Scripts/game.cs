@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+//using System.Collections.
 using UnityEngine;
 
 public class Game {
@@ -8,12 +10,13 @@ public class Game {
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
 
-    public Player[] players;
+    public List<Player> players;
 //    Bullet[] bullets;
     //Powerup[] powerup;
 
     public Game () {
-
+        players = new List<Player>();
+        // Player p1 = new Player()
     }
 
     public void reset() {
