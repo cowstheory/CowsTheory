@@ -6,7 +6,7 @@ public class main : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        game.update(key);
+        game.update();
     }
     
     void drawGame(ref Game game) {
