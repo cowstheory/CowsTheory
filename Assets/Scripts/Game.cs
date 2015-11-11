@@ -12,17 +12,20 @@ public class Game : MonoBehaviour{
     public List<Player> players;
     public List<Bullet> bullets;
 
-	public GameObject player;
+	public GameObject go;
 	//Powerup[] powerup;
 
     public Game () {
         players = new List<Player>();
         bullets = new List<Bullet>();
-		Instantiate (player);
 //		b = GameObject.Find("Cube");
 //		b.SetActive (false);
 //		Instantiate(b);
     }
+
+	void Start(){
+		GameObject p = (GameObject) Instantiate (go);
+	}
 
     public void reset() {
 		// TODO: Actually reset the game
