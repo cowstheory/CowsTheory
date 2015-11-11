@@ -2,19 +2,29 @@
 using System.Collections;
 
 public class main : MonoBehaviour {
-        Game game;
+    Game game;
+    
+    // Update is called once per frame
+    void Update () {
+        game.update(key);
+    }
+    
+    void drawGame(ref Game game) {
+        //surface.fill(game.bgColor)
+        game.draw();
+    }
+    
+    
+    void Start () {
+        game = new Game();
+        loadImagesAndModels();
+        loadSounds();
+    }
+    
+    void loadImagesAndModels() {
+    }
+    
+    void loadSounds() {
+    }
 
-	// Use this for initialization
-	void Start () {
-            game = new Game();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-        
-        void handleLogic() {
-            //game.update(key)
-        }
 }
