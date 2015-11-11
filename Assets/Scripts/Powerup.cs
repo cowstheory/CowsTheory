@@ -7,11 +7,11 @@ public class Powerup {
     bool isVisible;
     int ttl;
     
-    public Powerup(Vector3 pos_, vector3 v_) {
+    public Powerup(Vector3 pos_, Vector3 v_) {
         po = new PhysicsObject(5.0F, Vector3(), Vector3());
         maxHp = 5;
         hp = self.maxHp;
-        po.invulnerable = True;
+        po.invulnerable = true;
         id = null;
         owner = null;
         if (Random.Range (0.0F, 1.0F) > 0.5F) {
@@ -19,7 +19,7 @@ public class Powerup {
         } else {
             type = "gun";
         }
-        isVisible = True;
+        isVisible = true;
 	ttl = null;
         po.gravityFactor = 0.6;
         markedForRemoval = false;
@@ -63,8 +63,7 @@ public class Powerup {
         
         //Collision detection with players
         foreach (Player player in players) {
-            if (po.pos - player.po.pos).magnitude < con.POWERUP_PICKUP_DIST) {
-                
+            if ((po.pos - player.po.pos).magnitude < con.POWERUP_PICKUP_DIST) {
                 if (type == "health") {
                     player.po.gravityFactor = Mathf.Max(1.0, player.po.gravityFactor - 0.25);
                 } else if (type == "gun") {

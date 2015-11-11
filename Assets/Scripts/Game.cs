@@ -15,7 +15,7 @@ public class Game : MonoBehaviour{
 	public List<GameObject> player_objects;
 
 	public GameObject he_man, skeletor;
-	//Powerup[] powerup;
+	Powerup[] powerup;
 
     public Game () {
         players = new List<Player>();
@@ -101,10 +101,9 @@ public class Game : MonoBehaviour{
             player.draw(this);
         }
 
-        /* TODO: uncomment when Powerup is done
         foreach (Powerup powerup in this.powerups) {
             powerup.draw(this);
-        }*/
+        }
 
         /*
         //TODO: draw black hole
