@@ -10,7 +10,7 @@ public class Bullet {
     bool isVisisble = true;
     //this.ttl = None
     int ttl; //time to live
-    bool markedForRemoval;
+    public bool markedForRemoval;
     
     public Bullet(ref Player owner, Vector3 pos, Vector3 vel) {
         //po = PhysicsObject(m=2.7, owner=this.
