@@ -6,10 +6,8 @@ public class PlayerController : MonoBehaviour {
 	public int id;
 	public float gravityFactor = 1F; // then tune this value  in editor too
 
-	private float fireRate = 0.05F;
+	private float fireDelay = 0.4F;
 	private GameObject blackHole;
-	private float force = 7F;
-	private float bulletSpeed = 10F;
 	private float nextFire = 0.0f;
 	private Rigidbody rb;
 
@@ -29,59 +27,55 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
 		if (id == 1 && Time.time > nextFire) {
-			nextFire = Time.time + fireRate;
+			nextFire = Time.time + fireDelay;
 			if (Input.GetKey (KeyCode.W)) {
-				rb.AddForce (new Vector3 (0, -force, 0));
-				Shoot (new Vector3(0,bulletSpeed,0));
+				fireGun (Vector3.up);
 			}
 			else if (Input.GetKey (KeyCode.S)) {
-				rb.AddForce (new Vector3 (0, force, 0));
-				Shoot (new Vector3(0,-bulletSpeed,0));
+				fireGun (Vector3.down);
 			}
 			if (Input.GetKey (KeyCode.A)) {
-				rb.AddForce (new Vector3 (force, 0, 0));
-				Shoot (new Vector3(-bulletSpeed,0,0));
+				fireGun (Vector3.left);
 			}
 			else if (Input.GetKey (KeyCode.D)) {
-				rb.AddForce (new Vector3 (-force, 0, 0));
-				Shoot (new Vector3(bulletSpeed,0,0));
+				fireGun (Vector3.right);
 			}
 		} else if(Time.time > nextFire){
-			nextFire = Time.time + fireRate;
+			nextFire = Time.time + fireDelay;
 			if (Input.GetKey (KeyCode.UpArrow)) {
-				rb.AddForce (new Vector3 (0, -force, 0));
-				Shoot (new Vector3(0,bulletSpeed,0));
+				fireGun (Vector3.up);
 			}
 			else if (Input.GetKey (KeyCode.DownArrow)) {
-				rb.AddForce (new Vector3 (0, force, 0));
-				Shoot (new Vector3(0,-bulletSpeed,0));
+				fireGun (Vector3.down);
 			}
 			if (Input.GetKey (KeyCode.LeftArrow)) {
-				rb.AddForce (new Vector3 (force, 0, 0));
-				Shoot (new Vector3(-bulletSpeed,0,0));
+				fireGun (Vector3.left);
 			}
 			else if (Input.GetKey (KeyCode.RightArrow)) {
-				rb.AddForce (new Vector3 (-force, 0, 0));
-				Shoot (new Vector3(bulletSpeed,0,0));
+				fireGun (Vector3.right);
 			}
 		}
     }
 
-	void Shoot(Vector3 velocity){
-		GameObject b = (GameObject)Instantiate(bulletGO, this.transform.position, new Quaternion());
-		bullet = b.GetComponent<Bullet> ();
+	void fireGun(Vector3 direction){
+		bullet = ((GameObject)Instantiate(bulletGO, this.transform.position, new Quaternion())).GetComponent<Bullet>().Initialize();
 		bullet.setOwner (playerGO);
+		rb.AddForce(bullet.shoot (direction));
+	}
 
-		b.GetComponent<Rigidbody> ().velocity = velocity;
+	public void takeDamage(float damage){
+		pb.addGravityFactor (damage);
+		if(this.GetComponent<TextMesh>() != null)
+			this.GetComponent<TextMesh> ().text = pb.getGravityFactorText();
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.name == "BLACKHOLE") {
 			rb.Sleep ();
-			playerGO.transform.position = new Vector3 (Random.Range (1, 4), Random.Range (1, 4), 0);
+			playerGO.transform.position = new Vector3 (Random.Range (5, 10), Random.Range (5, 10), 0);
 			rb.WakeUp ();
+			rb.velocity = Vector3.up * 5.0F;
 		}
 	}
 }

@@ -32,8 +32,8 @@ public class Game : MonoBehaviour{
 	void Start(){
 		GameObject p1 = (GameObject)Instantiate(he_man);
 		GameObject p2 = (GameObject)Instantiate(skeletor);
-		p1.transform.position = new Vector3 (-4,2,0);
-		p2.transform.position = new Vector3 (4,2,0);
+		p1.transform.position = new Vector3 (-10,2,0);
+		p2.transform.position = new Vector3 (10,2,0);
 		player_objects.Add(p1);
 		player_objects.Add(p2);
 	}

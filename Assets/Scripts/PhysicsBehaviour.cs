@@ -14,10 +14,26 @@ public class PhysicsBehaviour{
 		this.rb = go.GetComponent<Rigidbody>();
 	}
 
-	public void updatePhysics(){
+	public void setGravityFactor(float gf){
+		this.gravityFactor = gf;
+	}
 
-		rb.velocity += (blackHole.transform.position - rb.transform.position).normalized * 
-			(con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
+	public void addGravityFactor(float amount){
+		this.gravityFactor += amount;
+	}
+
+	public string getGravityFactorText(){
+		return ((this.gravityFactor - 1.0F) * 100).ToString () + "%";
+	}
+
+	public void updatePhysics(){
+		float velocityDiff;
+		if (rb.transform.position.magnitude < con.EVENT_HORIZON_RADIUS) {
+			velocityDiff = 4*(con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
+		} else {
+			velocityDiff = (con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
+		}
+		rb.velocity += (blackHole.transform.position - rb.transform.position).normalized * velocityDiff;
 
 		//this.f += game.gravity * this.gravityFactor * this.m
 		//TODO: fix physics
