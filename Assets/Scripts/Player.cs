@@ -7,11 +7,10 @@ public class Player : MonoBehaviour {
     public int livesLeft;
 	public GameObject go;
 
-    public Player(int id_) {
+    public Player() {
         go = Object.Instantiate(go);
         po = new PhysicsObject(50.0F, new Vector3(), new Vector3());
         po.invulnerable = false;
-        id = id_;
         livesLeft = con.NUM_PLAYER_LIVES;
 //        respawn(game);
     }

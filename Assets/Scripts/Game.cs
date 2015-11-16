@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour{
 	int gameTime;
+
+	public float width, height, hWidth, hHeight;
     // bool exit = false;
     //gravity = V3(con.GRAVITY_X, con.GRAVITY_Y)
 
@@ -20,6 +22,11 @@ public class Game : MonoBehaviour{
     public Game () {
         players = new List<Player>();
         bullets = new List<Bullet>();
+
+		width = 50.0F;
+		height = 50.0F;
+		hHeight = width / 2.0F;
+		hWidth = height / 2.0F;
     }
 
 	void Start(){
@@ -70,9 +77,9 @@ public class Game : MonoBehaviour{
         this.powerups = filter(lambda x: not x.markedForRemoval, this.powerups)*/
 		List<Bullet> remaining_bullets = new List<Bullet>();
 		foreach (Bullet b in bullets) {
-			if(!b.markedForRemoval){
-				remaining_bullets.Add(b);
-			}
+//			if(!b.markedForRemoval){
+//				remaining_bullets.Add(b);
+//			}
 		}
 		bullets = remaining_bullets;
 

@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11400806}
   m_Layer: 0
   m_Name: StrawberryBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,10 +66,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 163984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bf70292c8224240a7fd4c6b5c241d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dec64c956fe042de80dc2c94291387a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 163984}
+  go: {fileID: 163984}
 --- !u!212 &21211832
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,6 +126,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 1.10000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: go
+      value: 
+      objectReference: {fileID: 163984}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Bullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

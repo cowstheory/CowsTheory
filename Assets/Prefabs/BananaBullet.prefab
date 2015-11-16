@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5489568}
   m_Layer: 0
   m_Name: BananaBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,10 +66,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 151178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57bf70292c8224240a7fd4c6b5c241d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dec64c956fe042de80dc2c94291387a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 151178}
+  go: {fileID: 151178}
 --- !u!212 &21234232
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -131,6 +131,14 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 151178}
+    - target: {fileID: 0}
+      propertyPath: go
+      value: 
+      objectReference: {fileID: 151178}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 151178}
