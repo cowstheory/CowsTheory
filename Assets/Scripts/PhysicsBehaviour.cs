@@ -4,13 +4,11 @@ using System.Collections;
 public class PhysicsBehaviour{
 	
 	private float gravityFactor = 1.0F;
-//	private GameObject go;
 	private GameObject blackHole;
 	private Rigidbody rb;
-
+	
 	public PhysicsBehaviour(GameObject go){
 		blackHole = GameObject.Find ("BLACKHOLE");
-//		this.go = go;
 		this.rb = go.GetComponent<Rigidbody>();
 	}
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public float damage = 0.1F;
 	public GameObject go;
-
+	private int id;
 	private Rigidbody rb;
 	private Game game;
 	private GameObject owner;
@@ -20,6 +20,14 @@ public class Bullet : MonoBehaviour {
 		pb = new PhysicsBehaviour (go);
 		pb.setGravityFactor (1.2F);
 		return this;
+	}
+
+	public void setId(int id){
+		this.id = id;
+	}
+
+	public int getId(){
+		return id;
 	}
 
 	public void setOwner(GameObject owner){
@@ -47,16 +55,18 @@ public class Bullet : MonoBehaviour {
 		return -velocityChange * mass * recoilCoefficient;
 	}
 
+	public float getMass(){
+		return mass;
+	}
+
+	public float getRecoilCoefficient(){
+		return recoilCoefficient;
+	}
+
 	void OnTriggerEnter(Collider other){
-//		if (other.tag == "Wall" || other.name == "BLACKHOLE") {
-//			Destroy (projectile);
-//		}
-//		Debug.Log (other.gameObject);
-//		Debug.Log (owner);
 		if (owner != other.gameObject && other.tag == "Player") {
-			PlayerController pc = other.GetComponent<PlayerController>();
+			Player pc = other.GetComponent<Player>();
 			pc.takeDamage(damage);
-//			other.attachedRigidbody.AddForce(-rb.velocity);
 			Destroy(go);
 		}
 	}

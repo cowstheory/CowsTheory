@@ -11,31 +11,54 @@ public class Game : MonoBehaviour{
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
 
-    public List<Player> players;
-    public List<Bullet> bullets;
+//    public List<Player> players;
+//    public List<Bullet> bullets;
 
 	public List<GameObject> player_objects;
 
 	public GameObject he_man, skeletor;
 	//Powerup[] powerup;
+	
+	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
-    public Game () {
-        players = new List<Player>();
-        bullets = new List<Bullet>();
-
+	void Start(){
+		player_objects = new List<GameObject> ();
+		
 		width = 50.0F;
 		height = 50.0F;
 		hHeight = width / 2.0F;
 		hWidth = height / 2.0F;
-    }
 
-	void Start(){
+		xboxController1 = GameObject.Find ("XboxController1").GetComponent<Controller>();
+		xboxController2 = GameObject.Find ("XboxController2").GetComponent<Controller>();
+
+		keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
+		keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
+
 		GameObject p1 = (GameObject)Instantiate(he_man);
 		GameObject p2 = (GameObject)Instantiate(skeletor);
-		p1.transform.position = new Vector3 (-10,2,0);
-		p2.transform.position = new Vector3 (10,2,0);
+
+		xboxController1.setPlayerGO (p1);
+		xboxController2.setPlayerGO (p2);
+
+		keyboardController1.setPlayerGO (p1);
+		keyboardController2.setPlayerGO (p2);
+
+		p1.transform.position = new Vector3 (-10,10,0);
+		p2.transform.position = new Vector3 (10,10,0);
 		player_objects.Add(p1);
 		player_objects.Add(p2);
+	}
+
+	void Update(){
+		if (Input.GetKeyDown (KeyCode.R)) {
+			foreach(GameObject p in player_objects){
+				Rigidbody rb = p.GetComponent<Rigidbody>();
+				rb.Sleep();
+				p.transform.position = Random.insideUnitCircle * Random.Range (5, 20);
+				rb.WakeUp();
+			}
+		}
 	}
 
     public void reset() {
@@ -75,17 +98,17 @@ public class Game : MonoBehaviour{
         /* TODO: remove bullets and powerups that are marked for removal
         this.bullets = filter(lambda x: not x.markedForRemoval, this.bullets)
         this.powerups = filter(lambda x: not x.markedForRemoval, this.powerups)*/
-		List<Bullet> remaining_bullets = new List<Bullet>();
-		foreach (Bullet b in bullets) {
+//		List<Bullet> remaining_bullets = new List<Bullet>();
+//		foreach (Bullet b in bullets) {
 //			if(!b.markedForRemoval){
 //				remaining_bullets.Add(b);
 //			}
-		}
-		bullets = remaining_bullets;
+//		}
+//		bullets = remaining_bullets;
 
-        foreach (Player player in players) {
-            player.update(this);
-        }
+//        foreach (Player player in players) {
+//            player.update(this);
+//        }
 
         /* TODO: remove players that are out of lives (same as just above this)
         //this.players = filter(lambda x: x.livesLeft > 0, this.players)*/
@@ -104,9 +127,9 @@ public class Game : MonoBehaviour{
 //            bullet.draw(this);
 //        }
 
-        foreach (Player player in players) {
-            player.draw(this);
-        }
+//        foreach (Player player in players) {
+//            player.draw(this);
+//        }
 
         /* TODO: uncomment when Powerup is done
         foreach (Powerup powerup in this.powerups) {

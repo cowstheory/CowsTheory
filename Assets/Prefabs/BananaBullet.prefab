@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: .100000001
   go: {fileID: 151178}
+  id: 1
 --- !u!212 &21234232
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -147,6 +148,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: id
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

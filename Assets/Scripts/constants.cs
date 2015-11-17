@@ -23,7 +23,7 @@ public static class con {
     public static float GRAVITY_FACTOR_POWERUP_DEFAULT = 0.2F;
     public static float GRAVITY_FACTOR_PLAYER_INCREASE_PER_HIT = 0.05F;
 
-	public static float GRAVITY_COEFFICIENT = 0.1F;
+	public static float GRAVITY_COEFFICIENT = 0.07F;
 	public static float GRAVITY_EXPONENT = 2.0F;
     /*BLACK = (0,0,0);
     WHITE = (255,255,255);

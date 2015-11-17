@@ -66,13 +66,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 179526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2280563355e42e293374a36d639e4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 070652453707148f9a79a54a4d6b9e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerGO: {fileID: 179526}
   bulletGO: {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
   id: 1
-  gravityFactor: 8.5
+  gravityFactor: 0
 --- !u!212 &21274820
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: .100000001
   go: {fileID: 163984}
+  id: 2
 --- !u!212 &21211832
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -135,6 +136,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: id
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
