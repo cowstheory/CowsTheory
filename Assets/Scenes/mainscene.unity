@@ -881,6 +881,10 @@ Prefab:
       propertyPath: m_Text
       value: ??%
       objectReference: {fileID: 0}
+    - target: {fileID: 128174, guid: ebddcb6ed275d44f6a198e89e0f7be0f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebddcb6ed275d44f6a198e89e0f7be0f, type: 2}
   m_IsPrefabParent: 0
@@ -919,7 +923,7 @@ MonoBehaviour:
   players: []
   bullets: []
   player_objects: []
-  he_man: {fileID: 179526, guid: bcddfc18db1bb4963a047a4b25c4ffe5, type: 2}
+  he_man: {fileID: 128174, guid: ebddcb6ed275d44f6a198e89e0f7be0f, type: 2}
   skeletor: {fileID: 186146, guid: 2c7bec002e41e47e7b30a5ff2b5ac021, type: 2}
 --- !u!4 &1399534941
 Transform:

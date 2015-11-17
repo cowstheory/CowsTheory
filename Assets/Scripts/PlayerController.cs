@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.name == "BLACKHOLE") {
 			rb.Sleep ();
-			playerGO.transform.position = new Vector3 (Random.Range (5, 10), Random.Range (5, 10), 0);
+			playerGO.transform.position = new Vector3 (Random.Range (5, 25), Random.Range (5, 25), 0);
 			rb.WakeUp ();
 			rb.velocity = Vector3.up * 5.0F;
 		}
