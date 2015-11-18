@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 			Bullet b = other.GetComponent<Bullet>();
 			if(b.getId() != id){
 				rb.velocity += other.attachedRigidbody.velocity;
-				Debug.Log (rb.velocity.magnitude);
+//				Debug.Log (rb.velocity.magnitude);
 			}
 		}
 	}
