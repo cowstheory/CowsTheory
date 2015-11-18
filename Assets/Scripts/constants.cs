@@ -25,14 +25,9 @@ public static class con {
 
 	public static float GRAVITY_COEFFICIENT = 0.07F;
 	public static float GRAVITY_EXPONENT = 2.0F;
-    /*BLACK = (0,0,0);
-    WHITE = (255,255,255);
-    GREY = GRAY = (128,128,128);
-    RED = (255,0,0);
-    GREEN = (0,255,0);
-    BLUE = (0,0,255);*/
 
     public static float BOUNCE_FACTOR_ON_WALLS = -0.9F;
+    public static float BULLET_COLLISION_MULTIPLIER = 1.5F; //multiplier: how much stronger will bullet push player
 
     public static float PLAYER_DRAG = 0.996F;
     public static int START_NUM_PLAYERS = 2;

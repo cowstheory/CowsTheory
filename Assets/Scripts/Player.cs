@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 
     void Start () {
 		rb = playerGO.GetComponent<Rigidbody> ();
+		this.rb.mass = 5.0F;
 		pb = new PhysicsBehaviour (playerGO);
     }
 	
@@ -42,8 +43,9 @@ public class Player : MonoBehaviour {
 		} else if (other.tag == "Bullet") {
 			Bullet b = other.GetComponent<Bullet>();
 			if(b.getId() != id){
-				rb.velocity += other.attachedRigidbody.velocity;
-//				Debug.Log (rb.velocity.magnitude);
+				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
+				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
+					(other.attachedRigidbody.mass / this.rb.mass) * other.attachedRigidbody.velocity;
 			}
 		}
 	}
