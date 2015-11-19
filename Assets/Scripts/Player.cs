@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     private float[] nextFire;
 
     void Start () {
+<<<<<<< HEAD
         rb = playerGO.GetComponent<Rigidbody> ();
         pb = new PhysicsBehaviour (playerGO);
         
@@ -48,6 +49,11 @@ public class Player : MonoBehaviour {
         rb.AddForce(bullet.shoot(direction));
         
         return true;
+=======
+		rb = playerGO.GetComponent<Rigidbody> ();
+		this.rb.mass = 5.0F;
+		pb = new PhysicsBehaviour (playerGO);
+>>>>>>> ef71efde0d10310c902e57b7fed77eab55d6f705
     }
 
     public void takeDamage(float damage){
@@ -56,6 +62,7 @@ public class Player : MonoBehaviour {
                     this.GetComponent<TextMesh> ().text = pb.getGravityFactorText();
     }
 
+<<<<<<< HEAD
     void OnTriggerEnter(Collider other){
             if (other.name == "BLACKHOLE") {
                 rb.Sleep ();
@@ -82,4 +89,21 @@ public class Player : MonoBehaviour {
                 return;
         }
     }
+=======
+	void OnTriggerEnter(Collider other){
+		if (other.name == "BLACKHOLE") {
+			rb.Sleep ();
+			playerGO.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
+			rb.WakeUp ();
+			rb.velocity = Vector3.up * 5.0F;
+		} else if (other.tag == "Bullet") {
+			Bullet b = other.GetComponent<Bullet>();
+			if(b.getId() != id){
+				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
+				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
+					(other.attachedRigidbody.mass / this.rb.mass) * other.attachedRigidbody.velocity;
+			}
+		}
+	}
+>>>>>>> ef71efde0d10310c902e57b7fed77eab55d6f705
 }

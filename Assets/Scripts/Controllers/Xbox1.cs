@@ -4,6 +4,7 @@ using System.Collections;
 public class Xbox1 : Controller {
 
 	void Update () {
+<<<<<<< HEAD
             // TODO: Custom mapping for xbox controller 1
             
             for (int i=0; i < 2; i++) {
