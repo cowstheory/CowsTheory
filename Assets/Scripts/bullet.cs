@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 	public float damage = 0.1F;
 	public GameObject go;
-	private int id;
+	private int ownerId;
 	private Rigidbody rb;
 	private Game game;
 	private GameObject owner;
@@ -13,61 +13,81 @@ public class Bullet : MonoBehaviour {
 	private float recoilCoefficient = 1.0F;
 	private float bulletSpeed = 30.0F;
 	private float mass = 2.0F;
+        
+        private string type = "pistol";
 
 	public Bullet Initialize(){
-		rb = GetComponent<Rigidbody> ();
-		game = FindObjectOfType<Game> ();
-		pb = new PhysicsBehaviour (go);
-		pb.setGravityFactor (1.2F);
-		return this;
+            rb = GetComponent<Rigidbody> ();
+            game = FindObjectOfType<Game> ();
+            pb = new PhysicsBehaviour (go);
+            pb.setGravityFactor (1.2F);
+            return this;
+	}
+        
+        public void setType(string type) {
+            switch (type) {
+                case "normal":
+                    break;
+                case "machinegun":
+                    break;
+                case "shotgun":
+                    break;
+                case "jetpack":
+                    break;
+                case default:
+                    Debug.Log(String.Format("%s is not a valid bullet type!", type));
+                    return;
+            }
+            
+            this.type = type;
+        }
+
+	public void setOwnerId(int id){
+            this.ownerId = id;
 	}
 
-	public void setId(int id){
-		this.id = id;
-	}
-
-	public int getId(){
-		return id;
+	public int getOwnerId(){
+            return ownerId;
 	}
 
 	public void setOwner(GameObject owner){
-		this.owner = owner;
+            this.owner = owner;
 	}
 
 	void FixedUpdate(){
-		pb.updatePhysics();
+            pb.updatePhysics();
 	}
 
 	void Update(){
-		if (transform.position.magnitude > game.width) {
-			Destroy(go);
-		}
+            if (transform.position.magnitude > game.width) {
+                Destroy(go);
+            }
 	}
 
 	/**
-	 * 
+	 *
 	 * Returns force backwards that can be used for e.g. player recoil
 	 **/
 	public Vector3 shoot(Vector3 direction){
-		Vector3 velocityChange = bulletSpeed * direction;
-		this.rb.velocity = velocityChange;
+            vector3 velocitychange = bulletspeed * direction;
+            this.rb.velocity = velocitychange;
 
-		return -velocityChange * mass * recoilCoefficient;
+            return -velocityChange * mass * recoilCoefficient;
 	}
 
 	public float getMass(){
-		return mass;
+            return mass;
 	}
 
 	public float getRecoilCoefficient(){
-		return recoilCoefficient;
+            return recoilCoefficient;
 	}
 
-	void OnTriggerEnter(Collider other){
-		if (owner != other.gameObject && other.tag == "Player") {
-			Player pc = other.GetComponent<Player>();
-			pc.takeDamage(damage);
-			Destroy(go);
-		}
+	void OnTriggerEnter(Collider other) {
+            if (owner != other.gameObject && other.tag == "Player") {
+                Player pc = other.GetComponent<Player>();
+                pc.takeDamage(damage);
+                Destroy(go);
+            }
 	}
 }

@@ -25,33 +25,33 @@ public class PhysicsBehaviour{
 	}
 
 	public void updatePhysics(){
-		float velocityDiff;
-		if (rb.transform.position.magnitude < con.EVENT_HORIZON_RADIUS) {
-			velocityDiff = 4*(con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
-		} else {
-			velocityDiff = (con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
-		}
-		rb.velocity += (blackHole.transform.position - rb.transform.position).normalized * velocityDiff;
+            float velocityDiff;
+            if (rb.transform.position.magnitude < con.EVENT_HORIZON_RADIUS) {
+                    velocityDiff = 4*(con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
+            } else {
+                    velocityDiff = (con.GRAVITY_COEFFICIENT * Mathf.Pow (gravityFactor, con.GRAVITY_EXPONENT));
+            }
+            rb.velocity += (blackHole.transform.position - rb.transform.position).normalized * velocityDiff;
 
-		//this.f += game.gravity * this.gravityFactor * this.m
-		//TODO: fix physics
-		//        Vector3 middleOfScreen = new Vector3(game.screenw/2.0, game.screenh/2.0);
-		//        float pullStrength = con.BLACK_HOLE_GRAVITY_STRENGTH * this.gravityFactor**2.0;
-		//        Vector3 f = (middleOfScreen - this.pos) * pullStrength;
-		//
-		//        if (game.vectorToMiddle(this.pos).len() < con.EVENT_HORIZON_RADIUS) {
-		//            this.f += f;
-		//        } else {
-		//            this.f += f*0.25;
-		//        }
-		//
-		//        //this.v += f * 1e-4 * (this.gravityFactor)**2
-		//
-		//        this.v += Vector3();
-		//
-		//        this.a = this.f / this.m;
-		//        this.f = Vector3();
-		//        this.v += this.a * game.dt;
-		//        this.pos += this.v * game.dt;
+            //this.f += game.gravity * this.gravityFactor * this.m
+            //TODO: fix physics
+            //        Vector3 middleOfScreen = new Vector3(game.screenw/2.0, game.screenh/2.0);
+            //        float pullStrength = con.BLACK_HOLE_GRAVITY_STRENGTH * this.gravityFactor**2.0;
+            //        Vector3 f = (middleOfScreen - this.pos) * pullStrength;
+            //
+            //        if (game.vectorToMiddle(this.pos).len() < con.EVENT_HORIZON_RADIUS) {
+            //            this.f += f;
+            //        } else {
+            //            this.f += f*0.25;
+            //        }
+            //
+            //        //this.v += f * 1e-4 * (this.gravityFactor)**2
+            //
+            //        this.v += Vector3();
+            //
+            //        this.a = this.f / this.m;
+            //        this.f = Vector3();
+            //        this.v += this.a * game.dt;
+            //        this.pos += this.v * game.dt;
 	}
 }

@@ -22,32 +22,32 @@ public class Game : MonoBehaviour{
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
 	void Start(){
-		player_objects = new List<GameObject> ();
-		
-		width = 50.0F;
-		height = 50.0F;
-		hHeight = width / 2.0F;
-		hWidth = height / 2.0F;
+            player_objects = new List<GameObject> ();
+            
+            width = 50.0F;
+            height = 50.0F;
+            hHeight = width / 2.0F;
+            hWidth = height / 2.0F;
 
-		xboxController1 = GameObject.Find ("XboxController1").GetComponent<Controller>();
-		xboxController2 = GameObject.Find ("XboxController2").GetComponent<Controller>();
+            xboxController1 = GameObject.Find ("XboxController1").GetComponent<Controller>();
+            xboxController2 = GameObject.Find ("XboxController2").GetComponent<Controller>();
 
-		keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
-		keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
+            keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
+            keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
 
-		GameObject p1 = (GameObject)Instantiate(he_man);
-		GameObject p2 = (GameObject)Instantiate(skeletor);
+            GameObject p1 = (GameObject)Instantiate(he_man);
+            GameObject p2 = (GameObject)Instantiate(skeletor);
 
-		xboxController1.setPlayerGO (p1);
-		xboxController2.setPlayerGO (p2);
+            xboxController1.setPlayerGO (p1);
+            xboxController2.setPlayerGO (p2);
 
-		keyboardController1.setPlayerGO (p1);
-		keyboardController2.setPlayerGO (p2);
+            keyboardController1.setPlayerGO (p1);
+            keyboardController2.setPlayerGO (p2);
 
-		p1.transform.position = new Vector3 (-10,10,0);
-		p2.transform.position = new Vector3 (10,10,0);
-		player_objects.Add(p1);
-		player_objects.Add(p2);
+            p1.transform.position = new Vector3 (-10,10,0);
+            p2.transform.position = new Vector3 (10,10,0);
+            player_objects.Add(p1);
+            player_objects.Add(p2);
 	}
 
 	void Update(){
