@@ -32,9 +32,9 @@ public static class con {
     public static float PLAYER_DRAG = 0.996F;
     public static int START_NUM_PLAYERS = 2;
 
-    public static float POWERUP_PICKUP_DIST = 48;
+    public static float POWERUP_PICKUP_DIST = 48.0F;
     public static float POWERUP_SPAWN_DELAY = 6*60;
     
 	
-    public static float CONTROLLER_DEADZONE = 0.2;
+    public static float CONTROLLER_DEADZONE = 0.2F;
 }

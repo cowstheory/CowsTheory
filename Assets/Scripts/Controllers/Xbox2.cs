@@ -8,12 +8,11 @@ public class Xbox2 : Controller {
 		Vector3 direction = new Vector3(Input.GetAxis("LeftJoystickX_P2"), -Input.GetAxis("LeftJoystickY_P2"), 0.0F);
 
 		if (Input.GetAxis ("LeftTrigger_P2") > 0.5F && direction != new Vector3()) {
-			p.fireGun (direction);
+			p.fireGun (direction, 0);
 		}
 
 		if(Input.GetButtonDown("A_P2") && direction != new Vector3()){
-			p.fireGun (direction);
->>>>>>> ef71efde0d10310c902e57b7fed77eab55d6f705
+			p.fireGun (direction, 0);
 		}
 	}
 }

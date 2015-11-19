@@ -13,17 +13,18 @@ public class Player : MonoBehaviour {
     
     public GameObject[] gunBulletTypes;
     
-    private float[] nextFire;
+    public float[] nextFire;
 
     void Start () {
-<<<<<<< HEAD
         rb = playerGO.GetComponent<Rigidbody> ();
         pb = new PhysicsBehaviour (playerGO);
         
+		this.rb.mass = 5.0F;
+        
         gunBulletTypes = new GameObject[2];
         
-        gunBulletTypes.Add(bulletGO);
-        gunBulletTypes.Add(bulletGO);
+        gunBulletTypes[0] = bulletGO;
+        gunBulletTypes[1] = bulletGO;
         
         nextFire = new float[2];
         nextFire[0] = Time.time;
@@ -49,11 +50,17 @@ public class Player : MonoBehaviour {
         rb.AddForce(bullet.shoot(direction));
         
         return true;
-=======
-		rb = playerGO.GetComponent<Rigidbody> ();
-		this.rb.mass = 5.0F;
-		pb = new PhysicsBehaviour (playerGO);
->>>>>>> ef71efde0d10310c902e57b7fed77eab55d6f705
+        
+    }
+    
+    public float getDelayForWeapon(int whichGun) {
+        if (whichGun >= gunBulletTypes.Length) {
+            Debug.Log("Out of index when trying to get delay for weapon");
+            return 0.0F;
+        }
+        
+		//TODO: use gunBulletTypes[whichGun] instead
+		return 0.25F;
     }
 
     public void takeDamage(float damage){
@@ -62,7 +69,6 @@ public class Player : MonoBehaviour {
                     this.GetComponent<TextMesh> ().text = pb.getGravityFactorText();
     }
 
-<<<<<<< HEAD
     void OnTriggerEnter(Collider other){
             if (other.name == "BLACKHOLE") {
                 rb.Sleep ();
@@ -78,32 +84,16 @@ public class Player : MonoBehaviour {
             }
     }
     
-    void givePowerup(Powerup pu) {
-        switch (pu.type) {
+    public void receievePowerup(Powerup pu) {
+        /*switch (pu.type) {
             case "shotspeedup":
                 break;
             case "health":
                 break;
-            case default:
+            default:
                 Debug.Log(String.Format("%s is not a valid powerup type!", type));
                 return;
         }
+        */
     }
-=======
-	void OnTriggerEnter(Collider other){
-		if (other.name == "BLACKHOLE") {
-			rb.Sleep ();
-			playerGO.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
-			rb.WakeUp ();
-			rb.velocity = Vector3.up * 5.0F;
-		} else if (other.tag == "Bullet") {
-			Bullet b = other.GetComponent<Bullet>();
-			if(b.getId() != id){
-				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
-				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
-					(other.attachedRigidbody.mass / this.rb.mass) * other.attachedRigidbody.velocity;
-			}
-		}
-	}
->>>>>>> ef71efde0d10310c902e57b7fed77eab55d6f705
 }

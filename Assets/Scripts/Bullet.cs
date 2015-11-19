@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
     public float damage = 0.1F;
     public GameObject go;
-    private int id;
+    private int ownerId;
     private Rigidbody rb;
     private Game game;
     private GameObject owner;
@@ -22,12 +22,12 @@ public class Bullet : MonoBehaviour {
         return this;
     }
 
-    public void setId(int id){
-        this.id = id;
+    public void setOwnerId(int ownerId){
+        this.ownerId = ownerId;
     }
 
-    public int getId(){
-        return id;
+    public int getOwnerId(){
+        return ownerId;
     }
 
     public void setOwner(GameObject owner){
