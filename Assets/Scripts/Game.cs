@@ -15,6 +15,7 @@ public class Game : MonoBehaviour{
 //    public List<Bullet> bullets;
 
 	public List<GameObject> player_objects;
+	public List<GameObject> powerup_objects;
 
 	public GameObject he_man, skeletor;
 	//Powerup[] powerup;
@@ -22,7 +23,8 @@ public class Game : MonoBehaviour{
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
 	void Start(){
-		player_objects = new List<GameObject> ();
+		player_objects = new List<GameObject>();
+		powerup_objects = new List<GameObject>();
 		
 		width = 50.0F;
 		height = 50.0F;
@@ -78,22 +80,16 @@ public class Game : MonoBehaviour{
         #if this.gameTime % 15 == 0:
         #    for player in this.players:
         #        player.po.gravityFactor += 0.01*/
-//
-//        if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
-//            Powerup p = new Powerup();
-//            p.respawn(this);
-//            this.powerups.append(p);
-//        }
-//
 
-//        foreach (Powerup powerup in this.powerups) {
-//            powerup.update(this);
-//        }
-//
-//
-//        foreach (Bullet bullet in this.powerups) {
-//            bullet.update(this);
-//        }
+        //if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
+		if (Input.GetKeyDown(KeyCode.P)) {
+			if (Random.Range(0.0F, 1.0F) > 0.5F) {
+				//GameObject puo = (GameObject)Instantiate(ShotSpeedUPowerup);
+			} else {
+				//GameObject puo = (GameObject)Instantiate(otherPowerUp);
+			}
+			//this.powerup_objects.Add(puo);
+        }
 
         /* TODO: remove bullets and powerups that are marked for removal
         this.bullets = filter(lambda x: not x.markedForRemoval, this.bullets)
