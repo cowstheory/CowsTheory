@@ -13,7 +13,7 @@ public class Xbox1 : Controller {
             }
             
             if (direction.magnitude > con.CONTROLLER_DEADZONE) {
-                if (Time.time < p.nextFire[i]) {
+                if (Time.time >= p.nextFire[i]) {
                     if (p.fireGun(direction.normalized, i)) {
                         p.nextFire[i] = Time.time + p.getDelayForWeapon(i);
                     }

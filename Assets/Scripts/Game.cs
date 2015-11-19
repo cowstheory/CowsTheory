@@ -15,6 +15,7 @@ public class Game : MonoBehaviour{
 //    public List<Bullet> bullets;
 
 	public List<GameObject> player_objects;
+	public List<GameObject> powerup_objects;
 
 	public GameObject he_man, skeletor;
 	//Powerup[] powerup;
@@ -22,32 +23,33 @@ public class Game : MonoBehaviour{
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
 	void Start(){
-            player_objects = new List<GameObject> ();
-            
-            width = 50.0F;
-            height = 50.0F;
-            hHeight = width / 2.0F;
-            hWidth = height / 2.0F;
+		player_objects = new List<GameObject>();
+		powerup_objects = new List<GameObject>();
+		
+		width = 50.0F;
+		height = 50.0F;
+		hHeight = width / 2.0F;
+		hWidth = height / 2.0F;
 
-            xboxController1 = GameObject.Find ("XboxController1").GetComponent<Controller>();
-            xboxController2 = GameObject.Find ("XboxController2").GetComponent<Controller>();
+        xboxController1 = GameObject.Find ("XboxController1").GetComponent<Controller>();
+        xboxController2 = GameObject.Find ("XboxController2").GetComponent<Controller>();
 
-            keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
-            keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
+        keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
+        keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
 
-            GameObject p1 = (GameObject)Instantiate(he_man);
-            GameObject p2 = (GameObject)Instantiate(skeletor);
+        GameObject p1 = (GameObject)Instantiate(he_man);
+        GameObject p2 = (GameObject)Instantiate(skeletor);
 
-            xboxController1.setPlayerGO (p1);
-            xboxController2.setPlayerGO (p2);
+        xboxController1.setPlayerGO (p1);
+        xboxController2.setPlayerGO (p2);
 
-            keyboardController1.setPlayerGO (p1);
-            keyboardController2.setPlayerGO (p2);
+        keyboardController1.setPlayerGO (p1);
+        keyboardController2.setPlayerGO (p2);
 
-            p1.transform.position = new Vector3 (-10,10,0);
-            p2.transform.position = new Vector3 (10,10,0);
-            player_objects.Add(p1);
-            player_objects.Add(p2);
+        p1.transform.position = new Vector3 (-10,10,0);
+        p2.transform.position = new Vector3 (10,10,0);
+        player_objects.Add(p1);
+        player_objects.Add(p2);
 	}
 
 	void Update(){
@@ -78,22 +80,16 @@ public class Game : MonoBehaviour{
         #if this.gameTime % 15 == 0:
         #    for player in this.players:
         #        player.po.gravityFactor += 0.01*/
-//
-//        if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
-//            Powerup p = new Powerup();
-//            p.respawn(this);
-//            this.powerups.append(p);
-//        }
-//
 
-//        foreach (Powerup powerup in this.powerups) {
-//            powerup.update(this);
-//        }
-//
-//
-//        foreach (Bullet bullet in this.powerups) {
-//            bullet.update(this);
-//        }
+        //if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
+		if (Input.GetKeyDown(KeyCode.P)) {
+			if (Random.Range(0.0F, 1.0F) > 0.5F) {
+				//GameObject puo = (GameObject)Instantiate(ShotSpeedUPowerup);
+			} else {
+				//GameObject puo = (GameObject)Instantiate(otherPowerUp);
+			}
+			//this.powerup_objects.Add(puo);
+        }
 
         /* TODO: remove bullets and powerups that are marked for removal
         this.bullets = filter(lambda x: not x.markedForRemoval, this.bullets)

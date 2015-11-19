@@ -60,7 +60,7 @@ public class Player : MonoBehaviour {
         }
         
 		//TODO: use gunBulletTypes[whichGun] instead
-		return 0.25F;
+		return 0.5F;
     }
 
     public void takeDamage(float damage){
@@ -76,10 +76,12 @@ public class Player : MonoBehaviour {
                 rb.WakeUp ();
                 rb.velocity = Vector3.up * 5.0F;
             } else if (other.tag == "Bullet") {
+
                 Bullet b = other.GetComponent<Bullet>();
-                if(b.getOwnerId() != this.id){
-                        rb.velocity += other.attachedRigidbody.velocity;
-                        Debug.Log (rb.velocity.magnitude);
+                if(b.getOwnerId() != this.id) {
+				    //m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
+					rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
+						(other.attachedRigidbody.mass / this.rb.mass) * other.attachedRigidbody.velocity;
                 }
             }
     }
