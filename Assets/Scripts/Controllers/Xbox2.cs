@@ -4,15 +4,21 @@ using System.Collections;
 public class Xbox2 : Controller {
 
 	void Update () {
-		// TODO: Custom mapping for xbox controller 2
-		Vector3 direction = new Vector3(Input.GetAxis("LeftJoystickX_P2"), -Input.GetAxis("LeftJoystickY_P2"), 0.0F);
-
-		if (Input.GetAxis ("LeftTrigger_P2") > 0.5F && direction != new Vector3()) {
-			p.fireGun (direction, 0);
-		}
-
-		if(Input.GetButtonDown("A_P2") && direction != new Vector3()){
-			p.fireGun (direction, 0);
+		Vector3 direction;
+		for (int i=0; i < 2; i++) {
+			if (i == 0) {
+				direction = new Vector3(Input.GetAxis("LeftJoystickX_P2"), -Input.GetAxis("LeftJoystickY_P2"), 0.0F);
+			} else {
+				direction = new Vector3(Input.GetAxis("RightJoystickX_P2"), -Input.GetAxis("RightJoystickY_P2"), 0.0F);
+			}
+			
+			if (direction.magnitude > con.CONTROLLER_DEADZONE) {
+				if (Time.time >= p.nextFire[i]) {
+					if (p.fireGun(direction.normalized, i)) {
+						p.nextFire[i] = Time.time + p.getDelayForWeapon(i);
+					}
+				}
+			}
 		}
 	}
 }

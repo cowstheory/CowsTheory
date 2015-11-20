@@ -1023,6 +1023,7 @@ MonoBehaviour:
   hHeight: 25
   blackHoleSize: 64
   player_objects: []
+  powerup_objects: []
   he_man: {fileID: 179526, guid: bcddfc18db1bb4963a047a4b25c4ffe5, type: 2}
   skeletor: {fileID: 186146, guid: 2c7bec002e41e47e7b30a5ff2b5ac021, type: 2}
 --- !u!4 &1399534941
