@@ -9,11 +9,6 @@ public class main : MonoBehaviour {
         game.update();
     }
     
-    void drawGame(ref Game game) {
-        //surface.fill(game.bgColor)
-        game.draw();
-    }
-    
     void Start () {
         game = new Game();
         loadImagesAndModels();

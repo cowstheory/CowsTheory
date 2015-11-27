@@ -6,13 +6,8 @@ public class Game : MonoBehaviour{
 	int gameTime;
 
 	public float width, height, hWidth, hHeight;
-    // bool exit = false;
-    //gravity = V3(con.GRAVITY_X, con.GRAVITY_Y)
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
-
-//    public List<Player> players;
-//    public List<Bullet> bullets;
 
 	public List<GameObject> player_objects;
 	public List<GameObject> powerup_objects;
@@ -110,64 +105,64 @@ public class Game : MonoBehaviour{
         //this.players = filter(lambda x: x.livesLeft > 0, this.players)*/
     }
 
-    public void draw() {
-        /*
-        for i in range(1,con.BOTTOM_HEIGHT+1) {
-            pygame.draw.line(surface, con.GREEN,
-                    (0           , this.screenh-i),
-                    (this.screenw, this.screenh-i))
-        }
-
-        */
-//        foreach (Bullet bullet in bullets) {
-//            bullet.draw(this);
+//    public void draw() {
+//        /*
+//        for i in range(1,con.BOTTOM_HEIGHT+1) {
+//            pygame.draw.line(surface, con.GREEN,
+//                    (0           , this.screenh-i),
+//                    (this.screenw, this.screenh-i))
 //        }
-
-//        foreach (Player player in players) {
-//            player.draw(this);
+//
+//        */
+////        foreach (Bullet bullet in bullets) {
+////            bullet.draw(this);
+////        }
+//
+////        foreach (Player player in players) {
+////            player.draw(this);
+////        }
+//
+//        /* TODO: uncomment when Powerup is done
+//        foreach (Powerup powerup in this.powerups) {
+//            powerup.draw(this);
+//        }*/
+//
+//        /*
+//        //TODO: draw black hole
+//        pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
+//            int(self.blackHoleSize), 0)
+//        //TODO: draw event horizon
+//        pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
+//            con.EVENT_HORIZON_RADIUS, 1)
+//
+//        //TODO: visualize number of lives left for each player
+//        #draw number of lives left
+//        numPanes = len(self.players)
+//        paneWidth = self.screenw / float(max(1, numPanes))
+//        for i, p in enumerate(self.players) {
+//            for life_index in range(p.livesLeft) {
+//                headHeight = 16 + 3*(p.id == 0)
+//                area = player.getAreaFromId(p.id, p.w, p.h)
+//                area[3] = headHeight
+//
+//                if len(self.players) < 10:
+//                    dest = (10 + paneWidth*i + 28*life_index, self.screenh - 40)
+//                else:
+//                    dest = (10 + paneWidth*i, self.screenh - 40 - 19 * life_index)
+//
+//                surface.blit(img["players"],
+//                    dest=dest,
+//                    area=area)
+//            }
 //        }
-
-        /* TODO: uncomment when Powerup is done
-        foreach (Powerup powerup in this.powerups) {
-            powerup.draw(this);
-        }*/
-
-        /*
-        //TODO: draw black hole
-        pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
-            int(self.blackHoleSize), 0)
-        //TODO: draw event horizon
-        pygame.draw.circle(surface, con.BLACK_HOLE_COLOR, (self.screenw/2, self.screenh/2),
-            con.EVENT_HORIZON_RADIUS, 1)
-
-        //TODO: visualize number of lives left for each player
-        #draw number of lives left
-        numPanes = len(self.players)
-        paneWidth = self.screenw / float(max(1, numPanes))
-        for i, p in enumerate(self.players) {
-            for life_index in range(p.livesLeft) {
-                headHeight = 16 + 3*(p.id == 0)
-                area = player.getAreaFromId(p.id, p.w, p.h)
-                area[3] = headHeight
-
-                if len(self.players) < 10:
-                    dest = (10 + paneWidth*i + 28*life_index, self.screenh - 40)
-                else:
-                    dest = (10 + paneWidth*i, self.screenh - 40 - 19 * life_index)
-
-                surface.blit(img["players"],
-                    dest=dest,
-                    area=area)
-            }
-        }
-        */
-    }
-
-    public Vector3 vectorToMiddle(Vector3 otherVec) {
-		// TODO: FIX THIS
-//        return Vector3(this.screenw/2.0, this.screenh/2.0) - otherVec;
-		return new Vector3 ();
-    }
+//        */
+//    }
+//
+//    public Vector3 vectorToMiddle(Vector3 otherVec) {
+//		// TODO: FIX THIS
+////        return Vector3(this.screenw/2.0, this.screenh/2.0) - otherVec;
+//		return new Vector3 ();
+//    }
 
 //	public ref Player[] getPlayers(){
 //		return players;

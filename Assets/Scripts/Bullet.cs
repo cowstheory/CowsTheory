@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour {
     private GameObject owner;
     private PhysicsBehaviour pb;
 
-    private float recoilCoefficient = 1.0F;
+    private float recoilCoefficient = 10.0F;
     private float bulletSpeed = 30.0F;
     private float mass = 2.0F;
 
