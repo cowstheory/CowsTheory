@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
   - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
   nextFire: []
+  damageText: {fileID: 0}
 --- !u!212 &21274820
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -148,7 +149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Constraints
-      value: 120
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
