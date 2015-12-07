@@ -66,12 +66,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 163984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dec64c956fe042de80dc2c94291387a, type: 3}
+  m_Script: {fileID: 11500000, guid: eccc2688efbca4d9cbf373629a2881e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: .100000001
   go: {fileID: 163984}
-  id: 2
 --- !u!212 &21211832
 SpriteRenderer:
   m_ObjectHideFlags: 1

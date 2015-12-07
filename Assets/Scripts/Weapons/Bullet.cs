@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
+
     public float damage = 0.1F;
     public GameObject go;
     private int ownerId;
@@ -9,6 +10,8 @@ public class Bullet : MonoBehaviour {
     private Game game;
     private GameObject owner;
     private PhysicsBehaviour pb;
+
+	private float lifeSpan, spawnTime;
 
     private float recoilCoefficient = 10.0F;
     private float bulletSpeed = 30.0F;
@@ -19,7 +22,9 @@ public class Bullet : MonoBehaviour {
         game = FindObjectOfType<Game> ();
         pb = new PhysicsBehaviour (go);
         pb.setGravityFactor (1.2F);
-        return this;
+		this.lifeSpan = 1.0F;
+		this.spawnTime = Time.time;
+		return this;
     }
 
     public void setOwnerId(int ownerId){
@@ -39,18 +44,20 @@ public class Bullet : MonoBehaviour {
     }
 
     void Update(){
-        if (transform.position.magnitude > game.width) {
-            Destroy(go);
-        }
+		if (Time.time > (spawnTime + lifeSpan)) {
+			Destroy (go);
+		}
     }
 
     /**
      * 
      * Returns force backwards that can be used for e.g. player recoil
      **/
-    public Vector3 shoot(Vector3 direction){
-        Vector3 velocityChange = bulletSpeed * direction;
+    public Vector3 shoot(Vector3 direction, float angle){
+		Vector3 velocityChange = Quaternion.Euler(0.0F, 0.0F, angle) * (bulletSpeed * direction);
+		Debug.Log (angle);
         this.rb.velocity = velocityChange;
+
 
         return -velocityChange * mass * recoilCoefficient;
     }

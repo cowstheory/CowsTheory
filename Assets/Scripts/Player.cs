@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -12,29 +13,37 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private Bullet bullet;
 	private PhysicsBehaviour pb;
+	private WeaponType[] currentWeapons;
+
+	public Dictionary<WeaponType, GameObject> bulletTypes = new Dictionary<WeaponType, GameObject>();
+
 	public GameObject[] gunBulletTypes;
+
 	public float[] nextFire;
 
 	public Text damageText;
 
-	private Weapon[] weapons;
+	private Weapon weapon;
 
 	void Start ()
 	{
+		weapon = GetComponent<Weapon> ();
+		weapon.setOwner (playerGO);
+		currentWeapons = new WeaponType[2];
+
 		rb = playerGO.GetComponent<Rigidbody> ();
 		pb = new PhysicsBehaviour (playerGO);
         
 		this.rb.mass = 5.0F;
         
-		gunBulletTypes = new GameObject[2];
-        
-		gunBulletTypes [0] = bulletGO;
-		gunBulletTypes [1] = bulletGO;
-        
 		nextFire = new float[2];
 		nextFire [0] = Time.time;
 		nextFire [1] = Time.time;
-//		damageText.text = "" + gravityFactor + "%";
+
+		currentWeapons [0] = WeaponType.MACHINEGUN;
+		currentWeapons [1] = WeaponType.SHOTGUN;
+		bulletTypes.Add (WeaponType.MACHINEGUN, gunBulletTypes [0]);
+		bulletTypes.Add (WeaponType.SHOTGUN, gunBulletTypes [1]);
 	}
     
 	void FixedUpdate ()
@@ -44,18 +53,12 @@ public class Player : MonoBehaviour
     
 	public bool fireGun (Vector3 direction, int whichGun)
 	{ //returns true if we could fire the gun, else false
-		if (whichGun >= gunBulletTypes.Length) {
+		if (whichGun >= currentWeapons.Length) {
 			Debug.Log ("Out of index when firing gun in Player.fireGun");
 			return false;
 		}
         
-		bullet = ((GameObject)Instantiate (gunBulletTypes [whichGun], this.transform.position,
-                    new Quaternion ())).GetComponent<Bullet> ().Initialize ();
-        
-		//bullet = ((GameObject)Instantiate(bulletGO, this.transform.position, new Quaternion())).GetComponent<Bullet>().Initialize();
-		bullet.setOwner (playerGO);
-		bullet.setOwnerId (id);
-		rb.AddForce (bullet.shoot (direction));
+		rb.AddForce (weapon.shoot(direction, currentWeapons[whichGun], bulletTypes[currentWeapons[whichGun]]));
         
 		return true;
         
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
 			playerGO.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
 			rb.WakeUp ();
 			rb.velocity = Vector3.up * 5.0F;
-			gravityFactor = 0.0F;
+			this.gravityFactor = 0.0F;
 //			damageText.text = "" + gravityFactor + "%";
 		} else if (other.tag == "Bullet") {
 
@@ -100,6 +103,10 @@ public class Player : MonoBehaviour
 		}
 	}
     
+	public int getId(){
+		return id;
+	}
+
 	public void receievePowerup (Powerup pu)
 	{
 		/*switch (pu.type) {
