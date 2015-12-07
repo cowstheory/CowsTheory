@@ -55,7 +55,6 @@ public class Bullet : MonoBehaviour {
      **/
     public Vector3 shoot(Vector3 direction, float angle){
 		Vector3 velocityChange = Quaternion.Euler(0.0F, 0.0F, angle) * (bulletSpeed * direction);
-		Debug.Log (angle);
         this.rb.velocity = velocityChange;
 
 
