@@ -1,0 +1,18 @@
++---------------------------------------------------------------------------------+
+|                                                                                 |
+|                                                                                 |
+|                                                                                 |
+|   Weapon 1: < Shotgun >                                   Weapon 1: < Shotgun > |
+|   Weapon 2: < Machine Gun >                               Weapon 2: < Shotgun > |
+|   Gravitational pull 0.07                                                       |
+|   Gravitational increase 2.0                                                    |
+|                                                                                 |
+|                                                                                 |
+|                                                                                 |
+|                                                                                 |
+|   Weapon 1: < Machine Gun >                                  PRESS START        |
+|   Weapon 2: < Machine Gun >                                    TO PLAY          |
+|                                                                                 |
+|                                                                                 |
+|                                                                                 |
++---------------------------------------------------------------------------------+
