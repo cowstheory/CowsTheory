@@ -21,7 +21,6 @@ public class Weapon : MonoBehaviour {
 	
 	// returns directional vector opposite to shooting direction
 	public Vector3 shoot (Vector3 direction, WeaponType type, Vector3 spawnPosition, GameObject bulletGO){
-		Debug.Log (owner);
 		Vector3 force = new Vector3 ();
 
 		// TODO: add more weapon types
