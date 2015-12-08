@@ -10,8 +10,8 @@ public class Weapon : MonoBehaviour {
 	private GameObject owner;
 
 	void Start(){
-		shotgunSpreadAngle = 45.0F;
-		shotgunBullets = 5;
+		shotgunSpreadAngle = 25.0F;
+		shotgunBullets = 7;
 		shotgunAngles = calculateShotgunSpread ();
 	}
 
@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour {
 		switch (type) {
 			case WeaponType.MACHINEGUN:
 				force = shootMachinegun(direction, bulletGO);
-				break;	
+				break;
 			case WeaponType.SHOTGUN:
 				force = shootShotgun(direction, bulletGO);
 				break;
@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour {
 			force += bullet.shoot(direction, shotgunAngles[i]);
 		}
 
-		return force * 0.6F;
+		return force / shotgunBullets;
 	}
 
 	private Vector3 shootMachinegun(Vector3 direction, GameObject bulletGO){
