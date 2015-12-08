@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour {
     public GameObject go;
     private int ownerId;
     private Rigidbody rb;
-    private Game game;
+//    private Game game;
     private GameObject owner;
     private PhysicsBehaviour pb;
 
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour {
 
     public Bullet Initialize(){
         rb = GetComponent<Rigidbody> ();
-        game = FindObjectOfType<Game> ();
+//        game = FindObjectOfType<Game> ();
         pb = new PhysicsBehaviour (go);
         pb.setGravityFactor (1.2F);
 		this.lifeSpan = 1.0F;

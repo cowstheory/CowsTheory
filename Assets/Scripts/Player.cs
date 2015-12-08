@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
 	private WeaponType[] currentWeapons;
 
 	public Dictionary<WeaponType, GameObject> bulletTypes = new Dictionary<WeaponType, GameObject>();
-
+	public AudioClip[] audioClips;
+	public AudioSource[] weaponFireSources;
 	public GameObject[] gunBulletTypes;
 
 	public float[] nextFire;
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
 	private Weapon weapon;
 
 	void Start ()
-	{
+	{	
 		weapon = GetComponent<Weapon> ();
 		weapon.setOwner (playerGO);
 		currentWeapons = new WeaponType[2];
@@ -39,6 +40,10 @@ public class Player : MonoBehaviour
 		nextFire = new float[2];
 		nextFire [0] = Time.time;
 		nextFire [1] = Time.time;
+
+		weaponFireSources = playerGO.GetComponents<AudioSource> ();
+		weaponFireSources [0].clip = audioClips [1];
+		weaponFireSources [1].clip = audioClips [2];
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -60,6 +65,8 @@ public class Player : MonoBehaviour
         
 		rb.AddForce (weapon.shoot(direction, currentWeapons[whichGun], bulletTypes[currentWeapons[whichGun]]));
         
+		weaponFireSources [whichGun].Play ();
+
 		return true;
         
 	}

@@ -52,6 +52,7 @@ public class Game : MonoBehaviour{
 
 	void Update(){
         if (state == "menu") {
+//			Debug.Log ("in menu");
         } else if (state == "ingame") {
             if (Input.GetKeyDown (KeyCode.R)) {
                 foreach(GameObject p in player_objects){

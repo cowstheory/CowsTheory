@@ -85,6 +85,12 @@ MonoBehaviour:
   bulletGO: {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
   id: 2
   gravityFactor: 0
+  audioClips:
+  - {fileID: 8300000, guid: a1c25a614cc843e44b836426e6bf564b, type: 3}
+  - {fileID: 8300000, guid: dfc5f305c0d56014eaba05300cdc4aac, type: 3}
+  - {fileID: 8300000, guid: 98e635452cf390b42b5b6fdd463fa687, type: 3}
+  - {fileID: 8300000, guid: f31035957f1e65a44bab01a3f18076a8, type: 3}
+  - {fileID: 8300000, guid: 15abae0e754f76c4b97fb61929dbed79, type: 3}
   gunBulletTypes:
   - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
   - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
@@ -123,6 +129,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: gunBulletTypes.Array.size
       value: 2
@@ -233,6 +243,26 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a1c25a614cc843e44b836426e6bf564b, type: 3}
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: dfc5f305c0d56014eaba05300cdc4aac, type: 3}
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 98e635452cf390b42b5b6fdd463fa687, type: 3}
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: f31035957f1e65a44bab01a3f18076a8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 15abae0e754f76c4b97fb61929dbed79, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186146}
