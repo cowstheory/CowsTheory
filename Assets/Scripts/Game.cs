@@ -5,6 +5,8 @@ using UnityEngine;
 public class Game : MonoBehaviour{
 	int gameTime;
 
+    public string state;
+    
 	public float width, height, hWidth, hHeight;
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
@@ -18,6 +20,7 @@ public class Game : MonoBehaviour{
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
 	void Start(){
+        state = "menu";
 		player_objects = new List<GameObject>();
 		powerup_objects = new List<GameObject>();
 		
@@ -48,14 +51,19 @@ public class Game : MonoBehaviour{
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.R)) {
-			foreach(GameObject p in player_objects){
-				Rigidbody rb = p.GetComponent<Rigidbody>();
-				rb.Sleep();
-				p.transform.position = Random.insideUnitCircle * Random.Range (5, 20);
-				rb.WakeUp();
-			}
-		}
+        if (state == "menu") {
+        } else if (state == "ingame") {
+            if (Input.GetKeyDown (KeyCode.R)) {
+                foreach(GameObject p in player_objects){
+                    Rigidbody rb = p.GetComponent<Rigidbody>();
+                    rb.Sleep();
+                    p.transform.position = Random.insideUnitCircle * Random.Range (5, 20);
+                    rb.WakeUp();
+                }
+            }
+        } else {
+            Debug.Log("Unknown state '" + state + "'");
+        }
 	}
 
     public void reset() {
