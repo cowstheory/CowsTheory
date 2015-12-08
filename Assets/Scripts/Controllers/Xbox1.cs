@@ -8,13 +8,13 @@ public class Xbox1 : Controller {
 		directionLeft = new Vector3(Input.GetAxis("LeftJoystickX_P1"), -Input.GetAxis("LeftJoystickY_P1"), 0.0F);
 		directionRight = new Vector3(Input.GetAxis("RightJoystickX_P1"), -Input.GetAxis("RightJoystickY_P1"), 0.0F);
         
-        Game game = GameObject.FindObjectOfType("Game");
+		Game game = GameObject.FindObjectOfType<Game>();
         
         if (game.state == "menu") {
-            if (Input.GetButtonDown(GamePad.Button.A)) {
+            if (Input.GetButtonDown("A_P1")) {
                 game.state = "ingame";
             }
-        } else if (state == "ingame") {
+        } else if (game.state == "ingame") {
             if (directionLeft.magnitude > con.CONTROLLER_DEADZONE) {
                 if (Time.time >= p.nextFire[0]) {
                     if (p.fireGun(directionLeft.normalized, 0)) {
