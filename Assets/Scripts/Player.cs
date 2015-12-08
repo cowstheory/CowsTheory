@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
-	public GameObject playerGO, bulletGO;
+	public GameObject spine;
 	public int id;
 	public float gravityFactor = 0F; // then tune this value  in editor too
     
@@ -20,20 +20,20 @@ public class Player : MonoBehaviour
 	public AudioSource[] weaponFireSources;
 	public GameObject[] gunBulletTypes;
 
-	public float[] nextFire;
+	private float[] nextFire;
 
-	public Text damageText;
+//	public Text damageText;
 
 	private Weapon weapon;
 
-	void Start ()
+	void Awake ()
 	{	
 		weapon = GetComponent<Weapon> ();
-		weapon.setOwner (playerGO);
+		weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
 
-		rb = playerGO.GetComponent<Rigidbody> ();
-		pb = new PhysicsBehaviour (playerGO);
+		rb = spine.GetComponent<Rigidbody> ();
+		pb = new PhysicsBehaviour (spine);
         
 		this.rb.mass = 5.0F;
         
@@ -41,9 +41,10 @@ public class Player : MonoBehaviour
 		nextFire [0] = Time.time;
 		nextFire [1] = Time.time;
 
-		weaponFireSources = playerGO.GetComponents<AudioSource> ();
-		weaponFireSources [0].clip = audioClips [1];
-		weaponFireSources [1].clip = audioClips [2];
+		weaponFireSources = spine.GetComponents<AudioSource> ();
+
+//		weaponFireSources [0].clip = audioClips [1];
+//		weaponFireSources [1].clip = audioClips [2];
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -56,6 +57,21 @@ public class Player : MonoBehaviour
 		pb.updatePhysics ();
 	}
     
+	public float getNextFire(int i){
+		if (i < nextFire.Length)
+			return nextFire [i];
+		else
+			Debug.Log ("Out of index when accessing nextFire");
+			return 0;
+	}
+
+	public void setNextFire(int index, float val){
+		if (index < nextFire.Length)
+			nextFire [index] = val;
+		else
+			Debug.Log ("Out of index when accessing nextFire");
+	}
+
 	public bool fireGun (Vector3 direction, int whichGun)
 	{ //returns true if we could fire the gun, else false
 		if (whichGun >= currentWeapons.Length) {
@@ -63,9 +79,9 @@ public class Player : MonoBehaviour
 			return false;
 		}
         
-		rb.AddForce (weapon.shoot(direction, currentWeapons[whichGun], bulletTypes[currentWeapons[whichGun]]));
+		rb.AddForce (weapon.shoot(direction, currentWeapons[whichGun], rb.position, bulletTypes[currentWeapons[whichGun]]));
         
-		weaponFireSources [whichGun].Play ();
+//		weaponFireSources [whichGun].Play ();
 
 		return true;
         
@@ -94,7 +110,7 @@ public class Player : MonoBehaviour
 	{
 		if (other.name == "BLACKHOLE") {
 			rb.Sleep ();
-			playerGO.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
+			spine.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
 			rb.WakeUp ();
 			rb.velocity = Vector3.up * 5.0F;
 			this.gravityFactor = 0.0F;

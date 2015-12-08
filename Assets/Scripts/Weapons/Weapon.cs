@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour {
 	private int shotgunBullets;
 	private GameObject owner;
 
-	void Start(){
+	void Awake(){
 		shotgunSpreadAngle = 25.0F;
 		shotgunBullets = 7;
 		shotgunAngles = calculateShotgunSpread ();
@@ -20,16 +20,17 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	// returns directional vector opposite to shooting direction
-	public Vector3 shoot (Vector3 direction, WeaponType type, GameObject bulletGO){
+	public Vector3 shoot (Vector3 direction, WeaponType type, Vector3 spawnPosition, GameObject bulletGO){
+		Debug.Log (owner);
 		Vector3 force = new Vector3 ();
 
 		// TODO: add more weapon types
 		switch (type) {
 			case WeaponType.MACHINEGUN:
-				force = shootMachinegun(direction, bulletGO);
+				force = shootMachinegun(direction, spawnPosition, bulletGO);
 				break;
 			case WeaponType.SHOTGUN:
-				force = shootShotgun(direction, bulletGO);
+				force = shootShotgun(direction, spawnPosition, bulletGO);
 				break;
 			default:
 				break;
@@ -39,12 +40,11 @@ public class Weapon : MonoBehaviour {
 	}
 
 	// TODO: shoot like a shotgun
-	private Vector3 shootShotgun(Vector3 direction, GameObject bulletGO){
+	private Vector3 shootShotgun(Vector3 direction, Vector3 spawnPosition, GameObject bulletGO){
 		Vector3 force = new Vector3 ();
 
 		for (int i = 0; i < shotgunBullets; ++i) {
-			Bullet bullet = ((GameObject)Instantiate(bulletGO, this.transform.position, new Quaternion())).GetComponent<Bullet>().Initialize();
-			bullet.setOwner (this.owner);
+			Bullet bullet = ((GameObject)Instantiate(bulletGO, spawnPosition, new Quaternion())).GetComponent<Bullet>().Initialize();
 			bullet.setOwnerId (this.owner.GetComponent<Player>().getId());
 			force += bullet.shoot(direction, shotgunAngles[i]);
 		}
@@ -52,9 +52,8 @@ public class Weapon : MonoBehaviour {
 		return force / shotgunBullets;
 	}
 
-	private Vector3 shootMachinegun(Vector3 direction, GameObject bulletGO){
-		Bullet bullet = ((GameObject)Instantiate(bulletGO, this.transform.position, new Quaternion())).GetComponent<Bullet>().Initialize();
-		bullet.setOwner (this.owner);
+	private Vector3 shootMachinegun(Vector3 direction, Vector3 spawnPosition, GameObject bulletGO){
+		Bullet bullet = ((GameObject)Instantiate(bulletGO, spawnPosition, new Quaternion())).GetComponent<Bullet>().Initialize();
 		bullet.setOwnerId (this.owner.GetComponent<Player>().getId());
 		return bullet.shoot(direction, 0.0F);
 	}

@@ -11,15 +11,14 @@ public class Game : MonoBehaviour{
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
 
-	public List<GameObject> player_objects;
+	private List<GameObject> player_objects;
 	public List<GameObject> powerup_objects;
 
 	public GameObject he_man, skeletor;
-	//Powerup[] powerup;
 	
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
-	void Start(){
+	void Awake(){
         state = "menu";
 		player_objects = new List<GameObject>();
 		powerup_objects = new List<GameObject>();
@@ -37,12 +36,14 @@ public class Game : MonoBehaviour{
 
         GameObject p1 = (GameObject)Instantiate(he_man);
         GameObject p2 = (GameObject)Instantiate(skeletor);
+		GameObject p1_hips = p1.transform.Find ("metarig/hips/spine").gameObject;
+		GameObject p2_hips = p2.transform.Find ("metarig/hips/spine").gameObject;
 
-        xboxController1.setPlayerGO (p1);
-        xboxController2.setPlayerGO (p2);
+        xboxController1.setPlayerGO (p1_hips);
+        xboxController2.setPlayerGO (p2_hips);
 
-        keyboardController1.setPlayerGO (p1);
-        keyboardController2.setPlayerGO (p2);
+        keyboardController1.setPlayerGO (p1_hips);
+        keyboardController2.setPlayerGO (p2_hips);
 
         p1.transform.position = new Vector3 (-10,10,0);
         p2.transform.position = new Vector3 (10,10,0);
@@ -52,7 +53,6 @@ public class Game : MonoBehaviour{
 
 	void Update(){
         if (state == "menu") {
-//			Debug.Log ("in menu");
         } else if (state == "ingame") {
             if (Input.GetKeyDown (KeyCode.R)) {
                 foreach(GameObject p in player_objects){

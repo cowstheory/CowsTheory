@@ -16,17 +16,17 @@ public class Xbox1 : Controller {
             }
         } else if (game.state == "ingame") {
             if (directionLeft.magnitude > con.CONTROLLER_DEADZONE) {
-                if (Time.time >= p.nextFire[0]) {
+                if (Time.time >= p.getNextFire(0)) {
                     if (p.fireGun(directionLeft.normalized, 0)) {
-                        p.nextFire[0] = Time.time + p.getDelayForWeapon(0);
+                        p.setNextFire(0, Time.time + p.getDelayForWeapon(0));
                     }
                 }
             }
             
             if (directionRight.magnitude > con.CONTROLLER_DEADZONE) {
-                if (Time.time >= p.nextFire[1]) {
+                if (Time.time >= p.getNextFire(1)) {
                     if (p.fireGun(directionRight.normalized, 1)) {
-                        p.nextFire[1] = Time.time + p.getDelayForWeapon(1);
+						p.setNextFire(1, Time.time + p.getDelayForWeapon(1));
                     }
                 }
             }

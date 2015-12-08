@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour {
     public GameObject go;
     private int ownerId;
     private Rigidbody rb;
-//    private Game game;
-    private GameObject owner;
     private PhysicsBehaviour pb;
 
 	private float lifeSpan, spawnTime;
@@ -19,7 +17,6 @@ public class Bullet : MonoBehaviour {
 
     public Bullet Initialize(){
         rb = GetComponent<Rigidbody> ();
-//        game = FindObjectOfType<Game> ();
         pb = new PhysicsBehaviour (go);
         pb.setGravityFactor (1.2F);
 		this.lifeSpan = 1.0F;
@@ -33,10 +30,6 @@ public class Bullet : MonoBehaviour {
 
     public int getOwnerId(){
         return ownerId;
-    }
-
-    public void setOwner(GameObject owner){
-        this.owner = owner;
     }
 
     void FixedUpdate(){
@@ -70,7 +63,9 @@ public class Bullet : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other){
-        if (owner != other.gameObject && other.tag == "Player") {
+		if (other.gameObject.GetComponent<Player> () == null)
+			return;
+        if (ownerId != other.gameObject.GetComponent<Player>().getId() && other.tag == "Player") {
             Player pc = other.GetComponent<Player>();
             pc.takeDamage(damage);
             Destroy(go);

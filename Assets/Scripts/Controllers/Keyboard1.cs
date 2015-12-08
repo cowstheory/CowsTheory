@@ -26,10 +26,10 @@ public class Keyboard1 : Controller {
 			float y = ((up?1.0F:0.0F) - (down?1.0F:0.0F)) / numPressed;
 
 
-			if (numPressed > 0.0F && Time.time >= p.nextFire[i]) {
+			if (numPressed > 0.0F && Time.time >= p.getNextFire(i)) {
 				nextFire = Time.time + fireDelay;
 				if (p.fireGun((new Vector3(x, y, 0.0F)).normalized, i)) {
-					p.nextFire[i] = Time.time + p.getDelayForWeapon(i);
+					p.setNextFire(i, Time.time + p.getDelayForWeapon(i));
 				}
 			}
 		}
