@@ -22,12 +22,14 @@ public class PhysicsBehaviour{
 
 	public void addGravityFactor(float amount){
         this.gravityFactor = Mathf.Max(1.0F, this.gravityFactor + amount);
-        
-        Debug.Log("Gravity factor is now " + this.gravityFactor);
     }
 
 	public string getGravityFactorText(){
 		return ((this.gravityFactor - 1.0F) * 100).ToString () + "%";
+	}
+    
+	public float getGravityFactor(){
+		return (this.gravityFactor);
 	}
 
 	public void updatePhysics(){

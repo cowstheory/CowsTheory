@@ -24,10 +24,11 @@ public static class con {
     public static float GRAVITY_FACTOR_PLAYER_INCREASE_PER_HIT = 0.05F;
 
 	public static float GRAVITY_COEFFICIENT = 0.15F;
-	public static float GRAVITY_EXPONENT = 2.3F;
+	public static float GRAVITY_EXPONENT = 1.7F;
 
     public static float BOUNCE_FACTOR_ON_WALLS = -0.9F;
-    public static float BULLET_COLLISION_MULTIPLIER = 1.5F; //multiplier: how much stronger will bullet push player
+    //multiplier: how much stronger will bullet push other players
+    public static float BULLET_COLLISION_MULTIPLIER = 2.5F;
 
     public static float PLAYER_DRAG = 0.996F;
     public static int START_NUM_PLAYERS = 2;

@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
 	public GameObject spine;
 	public int id;
-	public float gravityFactor = 0F; // then tune this value  in editor too
 	private Game game;
 	private Rigidbody rb;
 	private PhysicsBehaviour pb;
@@ -27,7 +26,7 @@ public class Player : MonoBehaviour
 	private Weapon2 weapon;
 
 	void Awake ()
-	{	
+	{
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -92,7 +91,7 @@ public class Player : MonoBehaviour
 		position.z = 0;
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
-		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);        
+		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);
 
 //		weaponFireSources [whichGun].Play ();
 
@@ -141,7 +140,9 @@ public class Player : MonoBehaviour
 			if (b.getOwnerId () != this.id) {
 				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
 				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
-					(other.attachedRigidbody.mass / this.rb.mass) * other.attachedRigidbody.velocity;
+					(other.attachedRigidbody.mass / this.rb.mass) *
+                    other.attachedRigidbody.velocity *
+                    this.pb.getGravityFactor(); //pushed away further if we have a higher gf
 			}
 		}
 	}

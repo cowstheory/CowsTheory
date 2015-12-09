@@ -12,8 +12,9 @@ public class Bullet2 : MonoBehaviour
 
     private float lifeSpan, spawnTime;
 
-    private float RecoilCoefficient = 10.0F;
+    private float RecoilCoefficient = 10.0F; //higher value means that WE will fly backwards more quickly
     private float BulletSpeed = 30.0F;
+    //private float Mass = 32.0F;
     private float Mass = 2.0F;
 
     // Feel free to add your own type of bullet. Remember to define it in BulletType.cs
@@ -23,15 +24,15 @@ public class Bullet2 : MonoBehaviour
         switch (bulletType)
         {
             case BulletType.MINOR:
-                damage = 0.1F;
-                recoilCoefficent = 10.0F;
-                bulletSpeed = 30.0F;
+                damage = 0.2F;
+                recoilCoefficent = 12.0F;
+                bulletSpeed = 40.0F;
                 mass = 2.0F;
                 break;
             case BulletType.HEAVY:
-                damage = 0.2F;
+                damage = 0.5F;
                 recoilCoefficent = 20.0F;
-                bulletSpeed = 15.0F;
+                bulletSpeed = 20.0F;
                 mass = 4.0F;
                 break;
             case BulletType.EXPLOSIVE:
@@ -62,8 +63,9 @@ public class Bullet2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pb = new PhysicsBehaviour(This);
-        pb.setGravityFactor(1.2F);
-        this.lifeSpan = 1.0F;
+        //pb.setGravityFactor(1.2F);
+        pb.setGravityFactor(1.4F);
+        this.lifeSpan = 3.0F;
         this.spawnTime = Time.time;
         return this;
     }
@@ -97,7 +99,7 @@ public class Bullet2 : MonoBehaviour
     }
 
     /**
-     * 
+     *
      * Returns force backwards that can be used for e.g. player recoil
      **/
     public Vector3 shoot(Vector3 direction, float angle, BulletType bulletType)
