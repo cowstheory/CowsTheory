@@ -655,7 +655,7 @@ MeshRenderer:
   m_GameObject: {fileID: 818726899}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 5666b5bda1fbf49f4846c7840398d3d2, type: 2}
   m_SubsetIndices: 
@@ -817,7 +817,7 @@ MonoBehaviour:
   blackHoleSize: 64
   powerup_objects: []
   he_man: {fileID: 129594, guid: 957f32927fcdb43e6b24b7f30f7853ab, type: 2}
-  skeletor: {fileID: 115296, guid: 8d026c62dd86540b5b73599ac3086463, type: 2}
+  skeletor: {fileID: 109724, guid: 8ac346a0b2e9b428a928b14c82702ba4, type: 2}
 --- !u!4 &1399534941
 Transform:
   m_ObjectHideFlags: 0
