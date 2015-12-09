@@ -196,7 +196,7 @@ AudioSource:
   m_Volume: .109999999
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1

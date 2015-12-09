@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 	public GameObject spine;
 	public int id;
 	public float gravityFactor = 0F; // then tune this value  in editor too
-
+	private Game game;
 	private Rigidbody rb;
 	private PhysicsBehaviour pb;
 	private WeaponType[] currentWeapons;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
-
+		game = FindObjectOfType<Game> ();
 		rb = spine.GetComponent<Rigidbody> ();
 		pb = new PhysicsBehaviour (spine);
         
@@ -89,9 +89,7 @@ public class Player : MonoBehaviour
 		} else {
 			position = rightHand.transform.position;
 		}
-		Debug.Log (position);
 		position.z = 0;
-		Debug.Log (position);
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
 		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);        
@@ -118,8 +116,8 @@ public class Player : MonoBehaviour
 	public void takeDamage (float damage)
 	{
 		pb.addGravityFactor (damage);
-		if (this.GetComponent<TextMesh> () != null)
-			this.GetComponent<TextMesh> ().text = pb.getGravityFactorText ();
+//		if (this.GetComponent<TextMesh> () != null)
+//			this.GetComponent<TextMesh> ().text = pb.getGravityFactorText ();
 //		damageText.text = "" + gravityFactor + "%";
 	}
 
@@ -127,10 +125,15 @@ public class Player : MonoBehaviour
 	{
 		if (other.name == "BLACKHOLE") {
 			rb.Sleep ();
-			spine.transform.position = Random.insideUnitCircle * Random.Range (10, 20);
-			rb.WakeUp ();
-			rb.velocity = Vector3.up * 5.0F;
-			this.gravityFactor = 0.0F;
+			rb.WakeUp();
+			game.destroyPlayer(this.id);
+//			game.instantiatePlayer(this.id);
+//			Destroy (this);
+
+//			spine.transform.position = Random.insideUnitCircle * Random.Range (30, 40);
+//			rb.WakeUp ();
+//			rb.velocity = Vector3.up * 5.0F;
+//			this.gravityFactor = 0.0F;
 //			damageText.text = "" + gravityFactor + "%";
 		} else if (other.tag == "Bullet") {
 
