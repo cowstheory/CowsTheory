@@ -19,14 +19,15 @@ public class Game : MonoBehaviour{
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
     private float delayBetweenPowerup = con.INITIAL_POWERUP_SPAWN_DELAY;
-    private float timeOfNextPowerup = Time.time;
+    private float timeOfNextPowerup;
 
 	void Awake(){
         state = "menu";
-		player_objects = new List<GameObject>();
+        timeOfNextPowerup = Time.time;
+        player_objects = new List<GameObject>();
 		powerup_objects = new List<GameObject>();
-		
-		width = 50.0F;
+
+        width = 50.0F;
 		height = 50.0F;
 		hHeight = width / 2.0F;
 		hWidth = height / 2.0F;
