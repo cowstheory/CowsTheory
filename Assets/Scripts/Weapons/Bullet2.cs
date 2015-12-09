@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet2 : MonoBehaviour
 {
     public GameObject This;
-    public float Damage = 0.1F;
+    public float Damage = 0.2F;
     private int ownerId;
     private Rigidbody rb;
     private GameObject owner;

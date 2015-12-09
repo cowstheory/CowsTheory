@@ -22,6 +22,8 @@ public class PhysicsBehaviour{
 
 	public void addGravityFactor(float amount){
         this.gravityFactor = Mathf.Min(1.0F, this.gravityFactor + amount);
+        
+        Debug.Log("Gravity factor is now " + this.gravityFactor);
     }
 
 	public string getGravityFactorText(){
