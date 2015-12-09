@@ -600,9 +600,9 @@ MonoBehaviour:
   hWidth: 25
   hHeight: 25
   blackHoleSize: 64
-  powerup_objects: []
-  he_man: {fileID: 129594, guid: 957f32927fcdb43e6b24b7f30f7853ab, type: 2}
-  skeletor: {fileID: 115296, guid: 3ab5b7bd548534fa6a030b27fbb87cc8, type: 2}
+  powerupObjects: []
+  player1: {fileID: 129594, guid: 957f32927fcdb43e6b24b7f30f7853ab, type: 2}
+  player2: {fileID: 115296, guid: 3ab5b7bd548534fa6a030b27fbb87cc8, type: 2}
 --- !u!4 &1399534941
 Transform:
   m_ObjectHideFlags: 0

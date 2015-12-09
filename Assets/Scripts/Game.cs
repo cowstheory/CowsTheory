@@ -12,10 +12,10 @@ public class Game : MonoBehaviour{
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
 
 	private List<GameObject> player_objects;
-	public List<GameObject> powerup_objects;
+	public List<GameObject> powerupObjects;
 
-	public GameObject he_man, skeletor;
-	
+	public GameObject player1, player2;
+
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
     private float delayBetweenPowerup = con.INITIAL_POWERUP_SPAWN_DELAY;
@@ -23,11 +23,12 @@ public class Game : MonoBehaviour{
 
 	void Awake(){
         state = "menu";
-        timeOfNextPowerup = Time.time;
-        player_objects = new List<GameObject>();
-		powerup_objects = new List<GameObject>();
+		player_objects = new List<GameObject>();
+		powerupObjects = new List<GameObject>();
 
-        width = 50.0F;
+		timeOfNextPowerup = Time.time;
+
+		width = 50.0F;
 		height = 50.0F;
 		hHeight = width / 2.0F;
 		hWidth = height / 2.0F;
@@ -38,8 +39,8 @@ public class Game : MonoBehaviour{
         keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
         keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
 
-        GameObject p1 = (GameObject)Instantiate(he_man);
-        GameObject p2 = (GameObject)Instantiate(skeletor);
+        GameObject p1 = (GameObject)Instantiate(player1);
+        GameObject p2 = (GameObject)Instantiate(player2);
 		GameObject p1_hips = p1.transform.Find ("metarig/hips/spine").gameObject;
 		GameObject p2_hips = p2.transform.Find ("metarig/hips/spine").gameObject;
 
@@ -76,8 +77,10 @@ public class Game : MonoBehaviour{
         if (Time.time >= timeOfNextPowerup){
             //create new powerup
             //Bullet2 bullet = ((GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, new Quaternion())).GetComponent<Bullet2>().Initialize();
-            Debug.Log("Pretend-created powerup!11");
+//            Debug.Log("Pretend-created powerup!11");
+			int index = Random.Range (0, powerupObjects.Count);
 
+			Instantiate (powerupObjects[index], new Vector3(20,20,0), new Quaternion());
             timeOfNextPowerup = Time.time + delayBetweenPowerup;
         }    
     }
