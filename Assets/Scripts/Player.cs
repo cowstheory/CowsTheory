@@ -89,12 +89,13 @@ public class Player : MonoBehaviour
 		} else {
 			position = rightHand.transform.position;
 		}
-
+		Debug.Log (position);
+		position.z = 0;
+		Debug.Log (position);
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
-        Debug.Log("USE THE FORCE, LUKE: " + force.ToString());
         rb.AddForce (force);
 		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);        
-//		rotateArms (direction);
+
 //		weaponFireSources [whichGun].Play ();
 
 		return true;
