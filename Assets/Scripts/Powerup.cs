@@ -10,15 +10,76 @@ public class Powerup : MonoBehaviour {
 	private Rigidbody rb;
 	private Bullet bullet;
 	private PhysicsBehaviour pb;
-        
-	public Powerup(){
+
+    private PowerupType Type;
+    private float lifeSpan, spawnTime;
+    //private float Mass;
+
+    public Powerup(){
 	}
-        
-	void OnTriggerEnter(Collider other){
+
+    public Powerup Initialize()
+    {
+        rb = GetComponent<Rigidbody>();
+        pb = new PhysicsBehaviour(powerupGO);
+        pb.setGravityFactor(1.2F);
+        this.lifeSpan = 10.0F;
+        this.spawnTime = Time.time;
+        return this;
+    }
+
+    public void spawn(PowerupType powerupType) {
+        CreatePowerup(powerupType);
+
+        //Vector3 velocityChange = Quaternion.Euler(0.0F, 0.0F, angle) * (BulletSpeed * direction);
+        this.rb.velocity = new Vector3(0.0F, 1.0F, 0.0F);
+    }
+
+    private void CreatePowerup(PowerupType powerupType)
+    {
+        Type = powerupType;
+        /* float mass;
+        switch (powerupType)
+        {
+           
+            case PowerupType.HEALTHPACK:
+                mass = 2.0F;
+                break;
+            case PowerupType.SHOTSPEED:
+                mass = 4.0F;
+                break;
+            default:
+                Debug.LogWarning("This isn't right");
+                mass = 2.0F;
+                break;
+        } */
+
+        //this.Mass = mass;
+    }
+
+    void OnTriggerEnter(Collider other){
             if (other.tag == "Player") {
                 Player p = other.GetComponent<Player>();
-                p.receievePowerup(this);
+
+                if (Type == PowerupType.HEALTHPACK) {
+                    p.takeDamage(-0.1F);
+                }
+
+            p.receievePowerup(Type);
                 Destroy(powerupGO);
             }
 	}
+
+    void Update()
+    {
+        if (Time.time > (spawnTime + lifeSpan))
+        {
+            Destroy(powerupGO);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        pb.updatePhysics();
+    }
 }

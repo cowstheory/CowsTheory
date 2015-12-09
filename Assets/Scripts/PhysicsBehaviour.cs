@@ -14,11 +14,15 @@ public class PhysicsBehaviour{
 
 	public void setGravityFactor(float gf){
 		this.gravityFactor = gf;
+
+        if (this.gravityFactor < 1.0F) {
+            Debug.LogError("Trying to set gravityFactor to less than 1.0F");
+        }
 	}
 
 	public void addGravityFactor(float amount){
-		this.gravityFactor += amount;
-	}
+        this.gravityFactor = Mathf.Min(1.0F, this.gravityFactor + amount);
+    }
 
 	public string getGravityFactorText(){
 		return ((this.gravityFactor - 1.0F) * 100).ToString () + "%";

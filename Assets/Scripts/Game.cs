@@ -18,6 +18,9 @@ public class Game : MonoBehaviour{
 	
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
+    private float delayBetweenPowerup = con.INITIAL_POWERUP_SPAWN_DELAY;
+    private float timeOfNextPowerup = Time.time;
+
 	void Awake(){
         state = "menu";
 		player_objects = new List<GameObject>();
@@ -62,10 +65,21 @@ public class Game : MonoBehaviour{
                     rb.WakeUp();
                 }
             }
+            handlePowerups();
         } else {
             Debug.Log("Unknown state '" + state + "'");
         }
 	}
+
+    public void handlePowerups() {
+        if (Time.time >= timeOfNextPowerup){
+            //create new powerup
+            //Bullet2 bullet = ((GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, new Quaternion())).GetComponent<Bullet2>().Initialize();
+            Debug.Log("Pretend-created powerup!11");
+
+            timeOfNextPowerup = Time.time + delayBetweenPowerup;
+        }    
+    }
 
     public void reset() {
 		// TODO: Actually reset the game

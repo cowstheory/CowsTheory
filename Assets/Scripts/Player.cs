@@ -125,8 +125,9 @@ public class Player : MonoBehaviour
 		return id;
 	}
 
-	public void receievePowerup (Powerup pu)
+	public void receievePowerup (PowerupType type)
 	{
+        
 		/*switch (pu.type) {
             case "shotspeedup":
                 break;
