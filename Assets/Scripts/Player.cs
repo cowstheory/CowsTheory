@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
 	private Rigidbody rb;
 	private PhysicsBehaviour pb;
 	private WeaponType[] currentWeapons;
-
-	//public Dictionary<WeaponType, GameObject> bulletTypes = new Dictionary<WeaponType, GameObject>();
+	
+	private GameObject upperLeftArm, leftHand;
+	private GameObject upperRightArm, rightHand;
+	
 	public AudioClip[] audioClips;
 	public AudioSource[] weaponFireSources;
 	//public GameObject[] gunBulletTypes;
@@ -46,8 +48,13 @@ public class Player : MonoBehaviour
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
-		//bulletTypes.Add (WeaponType.MACHINEGUN, gunBulletTypes [0]);
-		//bulletTypes.Add (WeaponType.SHOTGUN, gunBulletTypes [1]);
+
+		upperLeftArm = spine.transform.Find ("chest/shoulder.L/upper_arm.L").gameObject;
+		upperRightArm = spine.transform.Find ("chest/shoulder.R/upper_arm.R").gameObject;
+
+		leftHand = upperLeftArm.transform.Find ("forearm.L/hand.L").gameObject;
+		rightHand = upperRightArm.transform.Find ("forearm.R/hand.R").gameObject;
+
 	}
     
 	void FixedUpdate ()
@@ -76,15 +83,29 @@ public class Player : MonoBehaviour
 			Debug.Log ("Out of index when firing gun in Player.fireGun");
 			return false;
 		}
+		Vector3 position;
+		if (whichGun == 0) {
+			position = leftHand.transform.position;
+		} else {
+			position = rightHand.transform.position;
+		}
 
-        Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], rb.position);
+        Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         Debug.Log("USE THE FORCE, LUKE: " + force.ToString());
         rb.AddForce (force);
-        
+		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);        
+//		rotateArms (direction);
 //		weaponFireSources [whichGun].Play ();
 
 		return true;
         
+	}
+
+	void Update(){
+//		Debug.Log (upperRightArm.transform.forward);
+		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.forward, Color.blue);
+		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.right, Color.red);
+		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.up, Color.green);
 	}
     
 	public float getDelayForWeapon (int whichGun)
@@ -123,6 +144,11 @@ public class Player : MonoBehaviour
     
 	public int getId(){
 		return id;
+	}
+
+	public void rotateArms(Vector3 direction){
+		Debug.Log (upperLeftArm.transform.rotation);
+
 	}
 
 	public void receievePowerup (Powerup pu)
