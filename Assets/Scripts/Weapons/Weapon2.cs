@@ -6,33 +6,73 @@ public class Weapon2 : MonoBehaviour
     private float SpreadArc;
     private float[] SpreadAngles;
     private int BulletsPerShot;
+    private float FireDelay;
+    private BulletType LoadedBulletType;    // What type of bullet it loaded
 
-    public GameObject BulletType;   // Assign what bullet type the weapon has, affects damage etc.
+    public GameObject[] BulletTypes;    // All the types of bullets possible
     private GameObject Owner;
 
-    public Weapon2(float spreadArc, int bulletsPerShot)
+    private void CreateWeapon(WeaponType weaponType)
 	{
+        float spreadArc, fireDelay;
+        int bulletsPerShot;
+        BulletType loadedBulletType;
+
+        switch (weaponType)
+        {
+            case WeaponType.MACHINEGUN:
+                spreadArc = 0F;
+                fireDelay = 0.2F;
+                bulletsPerShot = 1;
+                loadedBulletType = BulletType.MINOR;
+                break;
+            default:
+                spreadArc = 0F;
+                fireDelay = 0.2F;
+                bulletsPerShot = 1;
+                loadedBulletType = BulletType.MINOR;
+                break;
+        }
         this.SpreadArc = spreadArc;
         this.BulletsPerShot = bulletsPerShot;
+        this.FireDelay = fireDelay;
+        this.LoadedBulletType = loadedBulletType;
         CalculateSpread();
-	}
+    }
+
+    void Awake()
+    {
+    }
 
     public void setOwner(GameObject owner)
     {
         this.Owner = owner;
     }
 
+    public GameObject GetBullet()
+    {
+        return BulletTypes[(int)LoadedBulletType];
+    }
+
+    public float GetDelay()
+    {
+        return this.FireDelay;
+    }
+
     // returns directional vector opposite to shooting direction
-    public Vector3 shoot(Vector3 direction, WeaponType type)
+    public Vector3 shoot(Vector3 direction, WeaponType type, Vector3 spawnPosition)
     {
         Vector3 force = new Vector3();
 
+        // Assign weapon properties to type of weapon this is.
+        CreateWeapon(type);
+
         for (int i = 0; i < BulletsPerShot; ++i)
         {
-            Bullet2 bullet = ((GameObject)Instantiate(BulletType, this.transform.position, new Quaternion())).GetComponent<Bullet2>().Initialize();
+            Bullet2 bullet = ((GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, new Quaternion())).GetComponent<Bullet2>().Initialize();
             bullet.setOwner(this.Owner);
             bullet.setOwnerId(this.Owner.GetComponent<Player>().getId());
-            force += bullet.shoot(direction, SpreadAngles[i]);
+            force += bullet.shoot(direction, SpreadAngles[i], LoadedBulletType);
         }
 
         return force;
@@ -43,7 +83,9 @@ public class Weapon2 : MonoBehaviour
         // If the spread is set to 0, set the angle array to zero as well (fire in a straight line).
         if(SpreadArc == 0)
         {
-            this.SpreadAngles = new float[]{ 0F};
+            float[] angles = new float[BulletsPerShot];
+            angles[0] = 0.0F;
+            this.SpreadAngles = angles;
             return;
         }
         // If the spread is >0, the angle array will be angles evenly distributing BulletsPerShot over SpreadArc angle-range.

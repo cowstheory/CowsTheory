@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 422198}
   - 212: {fileID: 21234232}
   - 65: {fileID: 6550068}
-  - 114: {fileID: 11410524}
   - 54: {fileID: 5489568}
+  - 114: {fileID: 11425880}
   m_Layer: 0
   m_Name: BananaBullet
   m_TagString: Bullet
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.26999998, z: 0}
+  m_LocalPosition: {x: 5.152915, y: .587678909, z: -2.67382765}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,7 +58,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .25, y: .270000011, z: .200000003}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11410524
+--- !u!114 &11425880
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,11 +66,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 151178}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eccc2688efbca4d9cbf373629a2881e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8610e97bfdd784a4ea78d9f92e573e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: .100000001
-  go: {fileID: 151178}
+  This: {fileID: 151178}
+  Damage: .100000001
 --- !u!212 &21234232
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -89,7 +89,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

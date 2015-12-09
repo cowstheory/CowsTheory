@@ -591,7 +591,7 @@ GameObject:
   - 65: {fileID: 6583824}
   - 135: {fileID: 13536868}
   - 114: {fileID: 11430088}
-  - 114: {fileID: 11459578}
+  - 114: {fileID: 11432290}
   m_Layer: 0
   m_Name: spine
   m_TagString: Player
@@ -1647,7 +1647,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115296}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -16.7600002, y: 10.8985424, z: 0}
+  m_LocalPosition: {x: 4.76438951, y: 1.69680572, z: -3.20537376}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children:
   - {fileID: 479058}
@@ -2504,10 +2504,7 @@ MonoBehaviour:
   gravityFactor: 0
   audioClips: []
   weaponFireSources: []
-  gunBulletTypes:
-  - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
-  - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
---- !u!114 &11459578
+--- !u!114 &11432290
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2515,9 +2512,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 142414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0582f588d836145bba9e89d188d0f74b, type: 3}
+  m_Script: {fileID: 11500000, guid: c987c827e584e1e4e8f6ec76ab5fc0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletTypes:
+  - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
+  - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
 --- !u!135 &13536868
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2548,7 +2548,9 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

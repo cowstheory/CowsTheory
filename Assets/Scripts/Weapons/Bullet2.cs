@@ -16,12 +16,46 @@ public class Bullet2 : MonoBehaviour
     private float BulletSpeed = 30.0F;
     private float Mass = 2.0F;
 
-    public Bullet2(float damage, float recoilCoefficent, float bulletSpeed, float mass)
+    // Feel free to add your own type of bullet. Remember to define it in BulletType.cs
+    private void CreateBullet(BulletType bulletType)
     {
+        float damage, recoilCoefficent, bulletSpeed, mass;
+        switch (bulletType)
+        {
+            case BulletType.MINOR:
+                damage = 0.1F;
+                recoilCoefficent = 10.0F;
+                bulletSpeed = 30.0F;
+                mass = 2.0F;
+                break;
+            case BulletType.HEAVY:
+                damage = 0.2F;
+                recoilCoefficent = 20.0F;
+                bulletSpeed = 15.0F;
+                mass = 4.0F;
+                break;
+            case BulletType.EXPLOSIVE:
+                damage = 0.1F;
+                recoilCoefficent = 15.0F;
+                bulletSpeed = 10.0F;
+                mass = 4.0F;
+                break;
+            default:
+                damage = 0.1F;
+                recoilCoefficent = 10.0F;
+                bulletSpeed = 30.0F;
+                mass = 2.0F;
+                break;
+        }
+            
         this.Damage = damage;
         this.RecoilCoefficient = recoilCoefficent;
         this.BulletSpeed = bulletSpeed;
         this.Mass = mass;
+    }
+
+    void Awake()
+    {
     }
 
     public Bullet2 Initialize()
@@ -66,8 +100,11 @@ public class Bullet2 : MonoBehaviour
      * 
      * Returns force backwards that can be used for e.g. player recoil
      **/
-    public Vector3 shoot(Vector3 direction, float angle)
+    public Vector3 shoot(Vector3 direction, float angle, BulletType bulletType)
     {
+        // Assign bullet properties
+        CreateBullet(bulletType);
+
         Vector3 velocityChange = Quaternion.Euler(0.0F, 0.0F, angle) * (BulletSpeed * direction);
         this.rb.velocity = velocityChange;
 

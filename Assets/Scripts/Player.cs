@@ -8,28 +8,26 @@ public class Player : MonoBehaviour
 	public GameObject spine;
 	public int id;
 	public float gravityFactor = 0F; // then tune this value  in editor too
-    
-	private GameObject blackHole;
+
 	private Rigidbody rb;
-	private Bullet bullet;
 	private PhysicsBehaviour pb;
 	private WeaponType[] currentWeapons;
 
-	public Dictionary<WeaponType, GameObject> bulletTypes = new Dictionary<WeaponType, GameObject>();
+	//public Dictionary<WeaponType, GameObject> bulletTypes = new Dictionary<WeaponType, GameObject>();
 	public AudioClip[] audioClips;
 	public AudioSource[] weaponFireSources;
-	public GameObject[] gunBulletTypes;
+	//public GameObject[] gunBulletTypes;
 
 	private float[] nextFire;
 
 //	public Text damageText;
 
-	private Weapon weapon;
+	private Weapon2 weapon;
 
 	void Awake ()
 	{	
-		weapon = GetComponent<Weapon> ();
-		weapon.setOwner (spine);
+		weapon = GetComponent<Weapon2> ();
+        weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
 
 		rb = spine.GetComponent<Rigidbody> ();
@@ -48,8 +46,8 @@ public class Player : MonoBehaviour
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
-		bulletTypes.Add (WeaponType.MACHINEGUN, gunBulletTypes [0]);
-		bulletTypes.Add (WeaponType.SHOTGUN, gunBulletTypes [1]);
+		//bulletTypes.Add (WeaponType.MACHINEGUN, gunBulletTypes [0]);
+		//bulletTypes.Add (WeaponType.SHOTGUN, gunBulletTypes [1]);
 	}
     
 	void FixedUpdate ()
@@ -78,8 +76,10 @@ public class Player : MonoBehaviour
 			Debug.Log ("Out of index when firing gun in Player.fireGun");
 			return false;
 		}
-        
-		rb.AddForce (weapon.shoot(direction, currentWeapons[whichGun], rb.position, bulletTypes[currentWeapons[whichGun]]));
+
+        Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], rb.position);
+        Debug.Log("USE THE FORCE, LUKE: " + force.ToString());
+        rb.AddForce (force);
         
 //		weaponFireSources [whichGun].Play ();
 
@@ -89,14 +89,9 @@ public class Player : MonoBehaviour
     
 	public float getDelayForWeapon (int whichGun)
 	{
-		if (whichGun >= gunBulletTypes.Length) {
-			Debug.Log ("Out of index when trying to get delay for weapon");
-			return 0.0F;
-		}
-        
-		//TODO: use gunBulletTypes[whichGun] instead
-		return 0.2F;
-	}
+        return 0.2F;
+        //return weapon.GetDelay();
+    }
 
 	public void takeDamage (float damage)
 	{
@@ -117,7 +112,7 @@ public class Player : MonoBehaviour
 //			damageText.text = "" + gravityFactor + "%";
 		} else if (other.tag == "Bullet") {
 
-			Bullet b = other.GetComponent<Bullet> ();
+			Bullet2 b = other.GetComponent<Bullet2> ();
 			if (b.getOwnerId () != this.id) {
 				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
 				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
