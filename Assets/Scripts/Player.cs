@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
 		//this.damageText.text = "Damage: " + this.pb.getGravityFactorText () + "%";
 
-        //Debug.Log (this.damageText.text);
+        Debug.Log (this.damageText.text);
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
 		//if (this.GetComponent<TextMesh> () != null)
 		//	this.GetComponent<TextMesh> ().text = this.pb.getGravityFactorText ();
         Debug.Log (damage);
+
 		damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
 	}
 
