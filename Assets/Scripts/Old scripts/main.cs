@@ -6,13 +6,13 @@ public class main : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        game.update();
+//        game.update();
     }
     
     void Start () {
-        game = new Game();
-        loadImagesAndModels();
-        loadSounds();
+//        game = new Game();
+//        loadImagesAndModels();
+//        loadSounds();
     }
     
     void loadImagesAndModels() {

@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightmapSnapshot: {fileID: 0}
+  m_LightmapSnapshot: {fileID: 112000001, guid: e93572afe464d4ac08d0543189b8b9fe,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -109,7 +110,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 138405824}
-  m_Text: Left
+  m_Text: Cow1
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -390,7 +391,7 @@ GameObject:
   - 23: {fileID: 202921973}
   - 102: {fileID: 202921972}
   m_Layer: 0
-  m_Name: Player2_lives
+  m_Name: lives2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,7 +763,7 @@ GameObject:
   - 23: {fileID: 872341206}
   - 102: {fileID: 872341205}
   m_Layer: 0
-  m_Name: Player1_lives
+  m_Name: lives1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,7 +862,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182384863}
-  m_Text: Right
+  m_Text: Cow2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

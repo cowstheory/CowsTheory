@@ -10,8 +10,7 @@ public class Game : MonoBehaviour{
 	public float width, height, hWidth, hHeight;
 
     public float blackHoleSize = con.BLACK_HOLE_START_SIZE;
-
-//	private List<GameObject> player_objects;
+	
 	public List<GameObject> powerupObjects;
 
 	public GameObject player1, player2;
@@ -20,19 +19,23 @@ public class Game : MonoBehaviour{
 	private Dictionary<int, GameObject> players;
 	private Dictionary<int, Controller> xbox;
 	private Dictionary<int, Controller> keyboards;
+	private Dictionary<int, Vector3> spawnPositions;
+	private Dictionary<int, int> playerLives;
 	private Controller keyboardController1, keyboardController2, xboxController1, xboxController2;
 
     private float delayBetweenPowerup = con.INITIAL_POWERUP_SPAWN_DELAY;
     private float timeOfNextPowerup;
 
 	void Awake(){
+		playerLives = new Dictionary<int, int> ();
 		playerGameObjects = new Dictionary<int, GameObject> ();
 		players = new Dictionary<int, GameObject> ();
 		xbox = new Dictionary<int, Controller> ();
 		keyboards = new Dictionary<int, Controller> ();
+		spawnPositions = new Dictionary<int, Vector3>();
 
         state = "menu";
-//		player_objects = new List<GameObject>();
+
 		powerupObjects = new List<GameObject>();
 
 		timeOfNextPowerup = Time.time;
@@ -47,68 +50,69 @@ public class Game : MonoBehaviour{
 
         keyboardController1 = GameObject.Find ("KeyboardController1").GetComponent<Controller> ();
         keyboardController2 = GameObject.Find ("KeyboardController2").GetComponent<Controller> ();
+
 		int player1id = player1.transform.Find ("metarig/hips/spine").GetComponent<Player>().getId();
 		int player2id = player2.transform.Find ("metarig/hips/spine").GetComponent<Player>().getId();
 
 		playerGameObjects.Add (player1id, player1);
 		xbox.Add (player1id, xboxController1);
 		keyboards.Add (player1id, keyboardController1);
+		playerLives.Add (player1id, con.NUM_PLAYER_LIVES);
+		spawnPositions.Add (player1id, con.PLAYER1_SPAWN);
 
 		playerGameObjects.Add (player2id, player2);
 		xbox.Add (player2id, xboxController2);
 		keyboards.Add (player2id, keyboardController2);
+		playerLives.Add (player2id, con.NUM_PLAYER_LIVES);
+		spawnPositions.Add (player2id, con.PLAYER2_SPAWN);
 
 		instantiatePlayer (player1id);
 		instantiatePlayer (player2id);
-
-//        GameObject p1 = (GameObject)Instantiate(player1);
-//        GameObject p2 = (GameObject)Instantiate(player2);
-//		GameObject p1_hips = player1.transform.Find ("metarig/hips/spine").GetComponent<Player>().getId();
-//		GameObject p2_hips = player2.transform.Find ("metarig/hips/spine").gameObject;
-//
-//        xboxController1.setPlayerGO (p1_hips);
-//        xboxController2.setPlayerGO (p2_hips);
-//
-//        keyboardController1.setPlayerGO (p1_hips);
-//        keyboardController2.setPlayerGO (p2_hips);
-//
-//        p1.transform.position = new Vector3 (-10,10,0);
-//        p2.transform.position = new Vector3 (10,10,0);
-//        player_objects.Add(p1);
-//        player_objects.Add(p2);
 	}
 
 	public void destroyPlayer(int id){
 		GameObject player = players [id];
 		players.Remove (id);
 		Destroy (player);
+
+		playerLives [id] = --playerLives [id];
 		instantiatePlayer (id);
 	}
 
 	public void instantiatePlayer (int id){
 		GameObject player = (GameObject)Instantiate (playerGameObjects[id]);
 		GameObject playerHips = player.transform.Find ("metarig/hips/spine").gameObject;
+
+		playerHips.GetComponent<Player> ().setLives(playerLives[id]);
+
 		xbox[id].setPlayerGO(playerHips);
 		keyboards [id].setPlayerGO (playerHips);
 
-		player.transform.position = Random.insideUnitCircle * Random.Range (20, 25);
-		players.Add (id, player);
+		player.transform.position = spawnPositions [id];
+		players [id] = player;
 	}
 
 	void Update(){
-        if (state == "menu") {
-        } else if (state == "ingame") {
-            if (Input.GetKeyDown (KeyCode.R)) {
+		if(Input.GetKeyDown(KeyCode.R)){
+			Application.LoadLevel(Application.loadedLevel);
+		}
 
-//                foreach(GameObject p in player_objects){
-//                    Rigidbody rb = p.GetComponent<Rigidbody>();
-//                    rb.Sleep();
-//                    p.transform.position = Random.insideUnitCircle * Random.Range (30, 40);
-//                    rb.WakeUp();
-//                }
-            }
-            handlePowerups();
-        } else {
+		foreach (KeyValuePair<int, int> p in playerLives) {
+			if(p.Value == 0){
+				state = "gameover";
+			}
+		}
+
+        if (state == "menu") {
+		} else if (state == "ingame") {
+			handlePowerups ();
+		} else if (state == "gameover") {
+			foreach (KeyValuePair<int, GameObject> p in players){
+				Destroy (p.Value);
+			}
+			Time.timeScale = 0;
+		}
+		else {
             Debug.Log("Unknown state '" + state + "'");
         }
 	}
@@ -130,27 +134,27 @@ public class Game : MonoBehaviour{
 //        Debug.Log("Game was reset!");
     }
 
-    public void update() {
-        gameTime += 1;
-        // float dt = 1/60;
-
-        /*#Quicker gameplay: continously increase all player's gravityFactor
-        #if this.gameTime % 15 == 0:
-        #    for player in this.players:
-        #        player.po.gravityFactor += 0.01*/
-
-        //if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
-		if (Input.GetKeyDown(KeyCode.P)) {
-			if (Random.Range(0.0F, 1.0F) > 0.5F) {
-				//GameObject puo = (GameObject)Instantiate(ShotSpeedUPowerup);
-			} else {
-				//GameObject puo = (GameObject)Instantiate(otherPowerUp);
-			}
-			//this.powerup_objects.Add(puo);
-        }
-
-        /* TODO: remove players that are out of lives (same as just above this)
-        //this.players = filter(lambda x: x.livesLeft > 0, this.players)*/
-    }
+//    public void update() {
+//        gameTime += 1;
+//        // float dt = 1/60;
+//
+//        /*#Quicker gameplay: continously increase all player's gravityFactor
+//        #if this.gameTime % 15 == 0:
+//        #    for player in this.players:
+//        #        player.po.gravityFactor += 0.01*/
+//
+//        //if (this.gameTime > 1 && this.gameTime % con.POWERUP_SPAWN_DELAY == 0) {
+//		if (Input.GetKeyDown(KeyCode.P)) {
+//			if (Random.Range(0.0F, 1.0F) > 0.5F) {
+//				//GameObject puo = (GameObject)Instantiate(ShotSpeedUPowerup);
+//			} else {
+//				//GameObject puo = (GameObject)Instantiate(otherPowerUp);
+//			}
+//			//this.powerup_objects.Add(puo);
+//        }
+//
+//        /* TODO: remove players that are out of lives (same as just above this)
+//        //this.players = filter(lambda x: x.livesLeft > 0, this.players)*/
+//    }
 
 }

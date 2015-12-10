@@ -75,7 +75,7 @@ public class Weapon2 : MonoBehaviour
 
         for (int i = 0; i < BulletsPerShot; ++i)
         {
-			GameObject bulletGO = (GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, Quaternion.Euler(0.0F, 0.90F, 0.0F));
+			GameObject bulletGO = (GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, Quaternion.Euler(0.0F, 180.0F, 0.0F));
 			Bullet2 bullet = bulletGO.GetComponent<Bullet2>().Initialize();
 
 			Quaternion facing = bulletGO.transform.rotation;

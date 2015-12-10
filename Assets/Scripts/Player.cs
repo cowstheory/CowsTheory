@@ -22,17 +22,14 @@ public class Player : MonoBehaviour
 
 	private Weapon2 weapon;
 
-//	private Text damageText;
-	private TextMesh damageText;
+	private int numberOfLives;
+	private TextMesh damageText, liveText;
 
 	void Awake ()
 	{	
-
-        //Debug.Log (GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ().text);
-
         this.damageText = GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ();
+		this.liveText = GameObject.Find ("Player" + id + "_text/lives" + id).GetComponent<TextMesh> ();
 
-        Debug.Log (this.damageText.text);
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -67,6 +64,7 @@ public class Player : MonoBehaviour
     
 	void Start(){
 		this.damageText.text = "Damage: " + this.pb.getGravityFactorText ();
+		this.liveText.text = "Lives: " + this.numberOfLives;
 	}
 
 	void FixedUpdate ()
@@ -74,6 +72,10 @@ public class Player : MonoBehaviour
 		pb.updatePhysics ();
 	}
     
+	public void setLives(int setLives){
+		this.numberOfLives = setLives;
+	}
+
 	public float getNextFire(int i){
 		if (i < nextFire.Length)
 			return nextFire [i];
@@ -90,7 +92,8 @@ public class Player : MonoBehaviour
 	}
 
 	public bool fireGun (Vector3 direction, int whichGun)
-	{ //returns true if we could fire the gun, else false
+	{
+		//returns true if we could fire the gun, else false
 		if (whichGun >= currentWeapons.Length) {
 			Debug.Log ("Out of index when firing gun in Player.fireGun");
 			return false;
@@ -102,7 +105,6 @@ public class Player : MonoBehaviour
 			position = rightHand.transform.position;
 		}
 
-//		Debug.Log ("whichGun:" + whichGun);
 		position.z = 0;
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
@@ -136,10 +138,11 @@ public class Player : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.name == "BLACKHOLE") {
-			rb.Sleep ();
-			rb.WakeUp();
+//			rb.Sleep ();
+//			rb.WakeUp();
 			game.destroyPlayer(this.id);
-			damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
+//			damageText.text = "Damage: " + this.pb.getGravityFactorText();
+//			liveText.text = "Lives: " + this.numberOfLives;
 		} else if (other.tag == "Bullet") {
 
 			Bullet2 b = other.GetComponent<Bullet2> ();
