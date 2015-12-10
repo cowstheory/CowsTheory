@@ -24,13 +24,13 @@ public class Weapon2 : MonoBehaviour
                 spreadArc = 0F;
                 fireDelay = 0.2F;
                 bulletsPerShot = 1;
-                loadedBulletType = BulletType.MINOR;
+                loadedBulletType = BulletType.HEAVY;
                 break;
 			case WeaponType.SHOTGUN:
-				spreadArc = 45F;
+				spreadArc = 25F;
 				fireDelay = 1.0F;
 				bulletsPerShot = 7;
-				loadedBulletType = BulletType.HEAVY;
+				loadedBulletType = BulletType.MINOR;
 				break;
             default:
                 spreadArc = 0F;
@@ -75,7 +75,16 @@ public class Weapon2 : MonoBehaviour
 
         for (int i = 0; i < BulletsPerShot; ++i)
         {
-            Bullet2 bullet = ((GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, new Quaternion())).GetComponent<Bullet2>().Initialize();
+			GameObject bulletGO = (GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, Quaternion.Euler(0.0F, 0.90F, 0.0F));
+			Bullet2 bullet = bulletGO.GetComponent<Bullet2>().Initialize();
+
+			Quaternion facing = bulletGO.transform.rotation;
+			Quaternion new_rot = Quaternion.LookRotation(direction);
+			new_rot *= facing;
+			bulletGO.transform.rotation = new_rot;
+
+            
+
             bullet.setOwner(this.Owner);
             bullet.setOwnerId(this.Owner.GetComponent<Player>().getId());
             force += bullet.shoot(direction, SpreadAngles[i], LoadedBulletType);

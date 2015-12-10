@@ -22,8 +22,13 @@ public class Player : MonoBehaviour
 
 	private Weapon2 weapon;
 
+//	private Text damageText;
+	private TextMesh damageText;
 	void Awake ()
-	{
+	{	
+//		Debug.Log ("Player" + id + "_damage");
+//		damageText = GameObject.Find("/damage" + id).GetComponent<TextMesh>();
+//		damageText.text = "Damage: " + pb.getGravityFactorText ();
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour
 
 		weaponFireSources [0].clip = audioClips [0];
 		weaponFireSources [1].clip = audioClips [1];
+
 		weaponFireSources [0].volume = 0.1F;
 		weaponFireSources [1].volume = 0.1F;
 
@@ -88,11 +94,11 @@ public class Player : MonoBehaviour
 			position = rightHand.transform.position;
 		}
 
-		Debug.Log ("whichGun:" + whichGun);
+//		Debug.Log ("whichGun:" + whichGun);
 		position.z = 0;
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
-		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);
+//		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);
 
 		weaponFireSources [whichGun].Play ();
 

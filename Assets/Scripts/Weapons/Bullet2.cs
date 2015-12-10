@@ -30,7 +30,7 @@ public class Bullet2 : MonoBehaviour
                 mass = 2.0F;
                 break;
             case BulletType.HEAVY:
-                damage = 0.5F;
+                damage = 0.4F;
                 recoilCoefficent = 20.0F;
                 bulletSpeed = 20.0F;
                 mass = 4.0F;

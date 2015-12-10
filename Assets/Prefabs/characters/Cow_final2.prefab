@@ -2642,8 +2642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletTypes:
-  - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
-  - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
+  - {fileID: 157036, guid: 8f84872e0f9bf4182a3fccc9bc504cd6, type: 2}
+  - {fileID: 148848, guid: 3eb0d0f2e2cb444ef8afb4679307237f, type: 2}
 --- !u!114 &11467494
 MonoBehaviour:
   m_ObjectHideFlags: 1
