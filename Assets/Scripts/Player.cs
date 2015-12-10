@@ -24,11 +24,17 @@ public class Player : MonoBehaviour
 
 //	private Text damageText;
 	private TextMesh damageText;
+
 	void Awake ()
 	{	
-//		Debug.Log ("Player" + id + "_damage");
-//		damageText = GameObject.Find("/damage" + id).GetComponent<TextMesh>();
-//		damageText.text = "Damage: " + pb.getGravityFactorText ();
+
+        //Debug.Log (GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ().text);
+
+        this.damageText = GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ();
+
+		//this.damageText.text = "Damage: " + this.pb.getGravityFactorText () + "%";
+
+        Debug.Log (this.damageText.text);
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -122,9 +128,11 @@ public class Player : MonoBehaviour
 	public void takeDamage (float damage)
 	{
 		pb.addGravityFactor (damage);
-//		if (this.GetComponent<TextMesh> () != null)
-//			this.GetComponent<TextMesh> ().text = pb.getGravityFactorText ();
-//		damageText.text = "" + gravityFactor + "%";
+		//if (this.GetComponent<TextMesh> () != null)
+		//	this.GetComponent<TextMesh> ().text = this.pb.getGravityFactorText ();
+        Debug.Log (damage);
+
+		damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -133,7 +141,7 @@ public class Player : MonoBehaviour
 			rb.Sleep ();
 			rb.WakeUp();
 			game.destroyPlayer(this.id);
-//			damageText.text = "" + gravityFactor + "%";
+			damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
 		} else if (other.tag == "Bullet") {
 
 			Bullet2 b = other.GetComponent<Bullet2> ();
