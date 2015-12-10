@@ -8,6 +8,7 @@ public class AddColliders : MonoBehaviour {
 	public float zPosition = 0f;
 	private Vector2 screenSize;
 	private Camera mainCamera;
+	public PhysicMaterial physicsMaterial;
 
 	void Start ()
 	{	
@@ -25,7 +26,7 @@ public class AddColliders : MonoBehaviour {
 		screenSize.y = Vector3.Distance (mainCamera.ScreenToWorldPoint(new Vector3(0,0,-cameraPos.z)),mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height,-cameraPos.z))) * 0.5F;
 		//For each Transform/Object in our Dictionary
 		foreach(KeyValuePair<string,Transform> valPair in colliders){
-			valPair.Value.gameObject.AddComponent<BoxCollider>(); //Add our colliders. Remove the "2D", if you would like 3D colliders.
+			valPair.Value.gameObject.AddComponent<BoxCollider>().material = physicsMaterial; //Add our colliders. Remove the "2D", if you would like 3D colliders.
 			valPair.Value.name = valPair.Key + "Collider"; //Set the object's name to it's "Key" name, and take on "Collider".  i.e: TopCollider
 			valPair.Value.parent = transform; //Make the object a child of whatever object this script is on (preferably the camera)
 			

@@ -32,8 +32,6 @@ public class Player : MonoBehaviour
 
         this.damageText = GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ();
 
-		//this.damageText.text = "Damage: " + this.pb.getGravityFactorText () + "%";
-
         Debug.Log (this.damageText.text);
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
@@ -53,8 +51,8 @@ public class Player : MonoBehaviour
 		weaponFireSources [0].clip = audioClips [0];
 		weaponFireSources [1].clip = audioClips [1];
 
-		weaponFireSources [0].volume = 0.1F;
-		weaponFireSources [1].volume = 0.1F;
+		weaponFireSources [0].volume = 0.065F;
+		weaponFireSources [1].volume = 0.065F;
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -67,6 +65,10 @@ public class Player : MonoBehaviour
 
 	}
     
+	void Start(){
+		this.damageText.text = "Damage: " + this.pb.getGravityFactorText ();
+	}
+
 	void FixedUpdate ()
 	{
 		pb.updatePhysics ();
@@ -128,11 +130,7 @@ public class Player : MonoBehaviour
 	public void takeDamage (float damage)
 	{
 		pb.addGravityFactor (damage);
-		//if (this.GetComponent<TextMesh> () != null)
-		//	this.GetComponent<TextMesh> ().text = this.pb.getGravityFactorText ();
-        Debug.Log (damage);
-
-		damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
+		damageText.text = "Damage: " + this.pb.getGravityFactorText();
 	}
 
 	void OnTriggerEnter (Collider other)

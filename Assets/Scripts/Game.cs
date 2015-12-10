@@ -118,10 +118,10 @@ public class Game : MonoBehaviour{
             //create new powerup
             //Bullet2 bullet = ((GameObject)Instantiate(BulletTypes[(int)LoadedBulletType], spawnPosition, new Quaternion())).GetComponent<Bullet2>().Initialize();
 //            Debug.Log("Pretend-created powerup!11");
-			int index = Random.Range (0, powerupObjects.Count);
-
-			Instantiate (powerupObjects[index], new Vector3(20,20,0), new Quaternion());
-            timeOfNextPowerup = Time.time + delayBetweenPowerup;
+//			int index = Random.Range (0, powerupObjects.Count);
+//
+//			Instantiate (powerupObjects[index], new Vector3(20,20,0), new Quaternion());
+//            timeOfNextPowerup = Time.time + delayBetweenPowerup;
         }    
     }
 

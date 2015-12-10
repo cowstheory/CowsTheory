@@ -22,7 +22,7 @@ public class Weapon2 : MonoBehaviour
         {
             case WeaponType.MACHINEGUN:
                 spreadArc = 0F;
-                fireDelay = 0.2F;
+                fireDelay = 0.05F;
                 bulletsPerShot = 1;
                 loadedBulletType = BulletType.HEAVY;
                 break;
