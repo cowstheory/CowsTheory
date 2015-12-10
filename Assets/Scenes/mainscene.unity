@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightmapSnapshot: {fileID: 0}
+  m_LightmapSnapshot: {fileID: 112000001, guid: e93572afe464d4ac08d0543189b8b9fe,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -109,7 +110,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 138405824}
-  m_Text: Left
+  m_Text: Cow1
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -267,7 +268,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8bac6418ab5d2be46955e8ebc75bd92d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .200000003
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colThickness: 4
   zPosition: 0
+  physicsMaterial: {fileID: 13400000, guid: fc890d36973ee42bd998c84773bd1cb6, type: 2}
 --- !u!1 &172564562
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +391,7 @@ GameObject:
   - 23: {fileID: 202921973}
   - 102: {fileID: 202921972}
   m_Layer: 0
-  m_Name: Player2_lives
+  m_Name: lives2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +763,7 @@ GameObject:
   - 23: {fileID: 872341206}
   - 102: {fileID: 872341205}
   m_Layer: 0
-  m_Name: Player1_lives
+  m_Name: lives1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +862,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182384863}
-  m_Text: Right
+  m_Text: Cow2
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -970,7 +972,9 @@ MonoBehaviour:
   hWidth: 25
   hHeight: 25
   blackHoleSize: 64
-  powerupObjects: []
+  powerupObjects:
+  - {fileID: 151178, guid: d6bb616b6cac24221a52b4543bbe6894, type: 2}
+  - {fileID: 163984, guid: 876482a6b98484eb1a25b8997b4126fd, type: 2}
   player1: {fileID: 129594, guid: 957f32927fcdb43e6b24b7f30f7853ab, type: 2}
   player2: {fileID: 169938, guid: 3ab5b7bd548534fa6a030b27fbb87cc8, type: 2}
 --- !u!4 &1399534941

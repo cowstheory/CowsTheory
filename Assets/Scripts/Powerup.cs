@@ -62,7 +62,7 @@ public class Powerup : MonoBehaviour {
                 Player p = other.GetComponent<Player>();
 
                 if (Type == PowerupType.HEALTHPACK) {
-                    p.takeDamage(-0.1F);
+                    p.takeDamage(con.POWERUP_HEALTHPACK_DAMAGE);
                 }
 
             p.receievePowerup(Type);

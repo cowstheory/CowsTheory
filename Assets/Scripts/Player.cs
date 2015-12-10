@@ -22,19 +22,14 @@ public class Player : MonoBehaviour
 
 	private Weapon2 weapon;
 
-//	private Text damageText;
-	private TextMesh damageText;
+	private int numberOfLives;
+	private TextMesh damageText, liveText;
 
 	void Awake ()
 	{	
-
-        //Debug.Log (GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ().text);
-
         this.damageText = GameObject.Find("Player" + id + "_text/damage" + id).GetComponent<TextMesh> ();
+		this.liveText = GameObject.Find ("Player" + id + "_text/lives" + id).GetComponent<TextMesh> ();
 
-		//this.damageText.text = "Damage: " + this.pb.getGravityFactorText () + "%";
-
-        Debug.Log (this.damageText.text);
 		weapon = GetComponent<Weapon2> ();
         weapon.setOwner (spine);
 		currentWeapons = new WeaponType[2];
@@ -53,8 +48,8 @@ public class Player : MonoBehaviour
 		weaponFireSources [0].clip = audioClips [0];
 		weaponFireSources [1].clip = audioClips [1];
 
-		weaponFireSources [0].volume = 0.1F;
-		weaponFireSources [1].volume = 0.1F;
+		weaponFireSources [0].volume = 0.065F;
+		weaponFireSources [1].volume = 0.065F;
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -67,11 +62,20 @@ public class Player : MonoBehaviour
 
 	}
     
+	void Start(){
+		this.damageText.text = "Damage: " + this.pb.getGravityFactorText ();
+		this.liveText.text = "Lives: " + this.numberOfLives;
+	}
+
 	void FixedUpdate ()
 	{
 		pb.updatePhysics ();
 	}
     
+	public void setLives(int setLives){
+		this.numberOfLives = setLives;
+	}
+
 	public float getNextFire(int i){
 		if (i < nextFire.Length)
 			return nextFire [i];
@@ -88,7 +92,8 @@ public class Player : MonoBehaviour
 	}
 
 	public bool fireGun (Vector3 direction, int whichGun)
-	{ //returns true if we could fire the gun, else false
+	{
+		//returns true if we could fire the gun, else false
 		if (whichGun >= currentWeapons.Length) {
 			Debug.Log ("Out of index when firing gun in Player.fireGun");
 			return false;
@@ -100,7 +105,6 @@ public class Player : MonoBehaviour
 			position = rightHand.transform.position;
 		}
 
-//		Debug.Log ("whichGun:" + whichGun);
 		position.z = 0;
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
@@ -128,20 +132,17 @@ public class Player : MonoBehaviour
 	public void takeDamage (float damage)
 	{
 		pb.addGravityFactor (damage);
-		//if (this.GetComponent<TextMesh> () != null)
-		//	this.GetComponent<TextMesh> ().text = this.pb.getGravityFactorText ();
-        Debug.Log (damage);
-
-		damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
+		damageText.text = "Damage: " + this.pb.getGravityFactorText();
 	}
 
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.name == "BLACKHOLE") {
-			rb.Sleep ();
-			rb.WakeUp();
+//			rb.Sleep ();
+//			rb.WakeUp();
 			game.destroyPlayer(this.id);
-			damageText.text = "Damage: " + this.pb.getGravityFactorText() + "%";
+//			damageText.text = "Damage: " + this.pb.getGravityFactorText();
+//			liveText.text = "Lives: " + this.numberOfLives;
 		} else if (other.tag == "Bullet") {
 
 			Bullet2 b = other.GetComponent<Bullet2> ();

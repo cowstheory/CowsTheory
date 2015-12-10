@@ -9,6 +9,9 @@ public static class con {
 
     public static int NUM_PLAYER_LIVES = 3;
 
+	public static Vector3 PLAYER1_SPAWN = new Vector3(-35.0F, 13.0F, 1.0F);
+	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, 13.0F, 1.0F);
+
     public static Color BG_COLOR = new Color(100,100,140);
     public static Color FONT_COLOR = new Color(200, 200, 200);
     public static Color BLACK_HOLE_COLOR = new Color(0, 0, 42);
@@ -28,13 +31,15 @@ public static class con {
 
     public static float BOUNCE_FACTOR_ON_WALLS = -0.9F;
     //multiplier: how much stronger will bullet push other players
-    public static float BULLET_COLLISION_MULTIPLIER = 2.5F;
+    public static float BULLET_COLLISION_MULTIPLIER = 1.0F;
 
     public static float PLAYER_DRAG = 0.996F;
     public static int START_NUM_PLAYERS = 2;
 
     //public static float POWERUP_PICKUP_DIST = 48.0F;
     public static float INITIAL_POWERUP_SPAWN_DELAY = 6.0F;
+    
+    public static float POWERUP_HEALTHPACK_DAMAGE = -0.8F;
 	
     public static float CONTROLLER_DEADZONE = 0.2F;
 }

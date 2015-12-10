@@ -25,7 +25,7 @@ public class PhysicsBehaviour{
     }
 
 	public string getGravityFactorText(){
-		return ((this.gravityFactor - 1.0F) * 100).ToString () + "%";
+		return ((this.gravityFactor - 1.0F) * 100).ToString ("F0") + "%";
 	}
     
 	public float getGravityFactor(){

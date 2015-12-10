@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet2 : MonoBehaviour
 {
     public GameObject This;
-    public float Damage = 0.2F;
+    public float Damage;
     private int ownerId;
     private Rigidbody rb;
     private GameObject owner;
@@ -12,8 +12,8 @@ public class Bullet2 : MonoBehaviour
 
     private float lifeSpan, spawnTime;
 
-    private float RecoilCoefficient = 10.0F; //higher value means that WE will fly backwards more quickly
-    private float BulletSpeed = 30.0F;
+    private float RecoilCoefficient; //higher value means that WE will fly backwards more quickly
+    private float BulletSpeed;
     //private float Mass = 32.0F;
     private float Mass = 2.0F;
 
@@ -22,30 +22,36 @@ public class Bullet2 : MonoBehaviour
     {
         float damage, recoilCoefficent, bulletSpeed, mass;
         switch (bulletType)
-        {
+        {	
+			// SHOTGUN
             case BulletType.MINOR:
-                damage = 0.2F;
-                recoilCoefficent = 12.0F;
-                bulletSpeed = 40.0F;
-                mass = 2.0F;
-                break;
-            case BulletType.HEAVY:
-                damage = 0.4F;
+                damage = 0.08F;
                 recoilCoefficent = 20.0F;
-                bulletSpeed = 20.0F;
+                bulletSpeed = 80.0F;
+                mass = 2.0F;
+				lifeSpan = 0.4F;
+                break;
+			// MACHINEGUN
+            case BulletType.HEAVY:
+                damage = 0.05F;
+                recoilCoefficent = 2.0F;
+                bulletSpeed = 80.0F;
                 mass = 4.0F;
+				lifeSpan = 2.0F;
                 break;
             case BulletType.EXPLOSIVE:
                 damage = 0.1F;
                 recoilCoefficent = 15.0F;
                 bulletSpeed = 10.0F;
                 mass = 4.0F;
+				lifeSpan = 2.0F;
                 break;
             default:
                 damage = 0.1F;
                 recoilCoefficent = 10.0F;
                 bulletSpeed = 30.0F;
                 mass = 2.0F;
+				lifeSpan = 2.0F;
                 break;
         }
             
@@ -65,7 +71,6 @@ public class Bullet2 : MonoBehaviour
         pb = new PhysicsBehaviour(This);
         //pb.setGravityFactor(1.2F);
         pb.setGravityFactor(1.4F);
-        this.lifeSpan = 3.0F;
         this.spawnTime = Time.time;
         return this;
     }
@@ -129,7 +134,7 @@ public class Bullet2 : MonoBehaviour
         if (owner != other.gameObject && other.tag == "Player")
         {
             Player pc = other.GetComponent<Player>();
-            pc.takeDamage(Damage);
+            pc.takeDamage(this.Damage);
             Destroy(This);
         }
     }
