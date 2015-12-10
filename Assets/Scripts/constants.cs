@@ -35,6 +35,8 @@ public static class con {
 
     //public static float POWERUP_PICKUP_DIST = 48.0F;
     public static float INITIAL_POWERUP_SPAWN_DELAY = 6.0F;
+    
+    public static float POWERUP_HEALTHPACK_DAMAGE = -0.8;
 	
     public static float CONTROLLER_DEADZONE = 0.2F;
 }
