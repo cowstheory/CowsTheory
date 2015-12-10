@@ -193,7 +193,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8bac6418ab5d2be46955e8ebc75bd92d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .109999999
+  m_Volume: .200000003
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
   blackHoleSize: 64
   powerupObjects: []
   player1: {fileID: 129594, guid: 957f32927fcdb43e6b24b7f30f7853ab, type: 2}
-  player2: {fileID: 115296, guid: 3ab5b7bd548534fa6a030b27fbb87cc8, type: 2}
+  player2: {fileID: 169938, guid: 3ab5b7bd548534fa6a030b27fbb87cc8, type: 2}
 --- !u!4 &1399534941
 Transform:
   m_ObjectHideFlags: 0

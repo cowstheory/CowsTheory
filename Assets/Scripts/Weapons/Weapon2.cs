@@ -26,6 +26,12 @@ public class Weapon2 : MonoBehaviour
                 bulletsPerShot = 1;
                 loadedBulletType = BulletType.MINOR;
                 break;
+			case WeaponType.SHOTGUN:
+				spreadArc = 45F;
+				fireDelay = 1.0F;
+				bulletsPerShot = 7;
+				loadedBulletType = BulletType.HEAVY;
+				break;
             default:
                 spreadArc = 0F;
                 fireDelay = 0.2F;

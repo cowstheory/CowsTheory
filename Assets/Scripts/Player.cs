@@ -17,11 +17,8 @@ public class Player : MonoBehaviour
 	
 	public AudioClip[] audioClips;
 	public AudioSource[] weaponFireSources;
-	//public GameObject[] gunBulletTypes;
 
 	private float[] nextFire;
-
-//	public Text damageText;
 
 	private Weapon2 weapon;
 
@@ -42,8 +39,10 @@ public class Player : MonoBehaviour
 
 		weaponFireSources = spine.GetComponents<AudioSource> ();
 
-//		weaponFireSources [0].clip = audioClips [1];
-//		weaponFireSources [1].clip = audioClips [2];
+		weaponFireSources [0].clip = audioClips [0];
+		weaponFireSources [1].clip = audioClips [1];
+		weaponFireSources [0].volume = 0.1F;
+		weaponFireSources [1].volume = 0.1F;
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -88,28 +87,30 @@ public class Player : MonoBehaviour
 		} else {
 			position = rightHand.transform.position;
 		}
+
+		Debug.Log ("whichGun:" + whichGun);
 		position.z = 0;
         Vector3 force = weapon.shoot(direction, currentWeapons[whichGun], position);
         rb.AddForce (force);
 		Debug.DrawLine (spine.transform.position, (spine.transform.position + 10*direction), Color.red);
 
-//		weaponFireSources [whichGun].Play ();
+		weaponFireSources [whichGun].Play ();
 
 		return true;
         
 	}
 
-	void Update(){
+//	void Update(){
 //		Debug.Log (upperRightArm.transform.forward);
-		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.forward, Color.blue);
-		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.right, Color.red);
-		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.up, Color.green);
-	}
+//		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.forward, Color.blue);
+//		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.right, Color.red);
+//		Debug.DrawLine (upperRightArm.transform.position, upperRightArm.transform.position + upperRightArm.transform.up, Color.green);
+//	}
     
 	public float getDelayForWeapon (int whichGun)
 	{
-        return 0.2F;
-        //return weapon.GetDelay();
+//        return 0.2F;
+        return weapon.GetDelay();
     }
 
 	public void takeDamage (float damage)
@@ -126,13 +127,6 @@ public class Player : MonoBehaviour
 			rb.Sleep ();
 			rb.WakeUp();
 			game.destroyPlayer(this.id);
-//			game.instantiatePlayer(this.id);
-//			Destroy (this);
-
-//			spine.transform.position = Random.insideUnitCircle * Random.Range (30, 40);
-//			rb.WakeUp ();
-//			rb.velocity = Vector3.up * 5.0F;
-//			this.gravityFactor = 0.0F;
 //			damageText.text = "" + gravityFactor + "%";
 		} else if (other.tag == "Bullet") {
 
@@ -149,10 +143,6 @@ public class Player : MonoBehaviour
     
 	public int getId(){
 		return id;
-	}
-
-	public void rotateArms(Vector3 direction) {
-		Debug.Log (upperLeftArm.transform.rotation);
 	}
 
     public void receievePowerup(PowerupType type) {
