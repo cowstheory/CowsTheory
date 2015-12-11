@@ -12,9 +12,7 @@ public static class con {
 	public static Vector3 PLAYER1_SPAWN = new Vector3(-35.0F, 13.0F, 1.0F);
 	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, 13.0F, 1.0F);
 
-    public static Color BG_COLOR = new Color(100,100,140);
     public static Color FONT_COLOR = new Color(200, 200, 200);
-    public static Color BLACK_HOLE_COLOR = new Color(0, 0, 42);
     public static float BLACK_HOLE_GRAVITY_STRENGTH = 100.0F;
     public static float BLACK_HOLE_START_SIZE = 64.0F;
     public static float EVENT_HORIZON_RADIUS = 5.0F;
