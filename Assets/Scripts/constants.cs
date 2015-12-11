@@ -10,7 +10,7 @@ public static class con {
     public static int NUM_PLAYER_LIVES = 3;
 
 	public static Vector3 PLAYER1_SPAWN = new Vector3(-35.0F, 13.0F, 1.0F);
-	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, 13.0F, 1.0F);
+	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, -13.0F, 1.0F);
 
     public static Color FONT_COLOR = new Color(200, 200, 200);
     public static float BLACK_HOLE_GRAVITY_STRENGTH = 100.0F;

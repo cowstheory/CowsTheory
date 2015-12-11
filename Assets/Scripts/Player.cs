@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
 			Bullet2 b = other.GetComponent<Bullet2> ();
 			if (b.getOwnerId () != this.id) {
 				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
-				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
+				rb.velocity += 0.3F * con.BULLET_COLLISION_MULTIPLIER *
 					(other.attachedRigidbody.mass / this.rb.mass) *
                     other.attachedRigidbody.velocity *
                     this.pb.getGravityFactor(); //pushed away further if we have a higher gf

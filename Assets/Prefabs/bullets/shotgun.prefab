@@ -50,7 +50,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -100,7 +102,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: .0232999995
+  m_Radius: .0299999993
   m_Height: 1
   m_Direction: 0
   m_Center: {x: 9.31322575e-10, y: -2.88709998e-08, z: -.00953415874}
@@ -166,6 +168,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.y
       value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: .0299999993
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Direction
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
