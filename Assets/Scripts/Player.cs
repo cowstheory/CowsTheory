@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
 	void Start(){
 		this.damageText.text = "Damage: " + this.pb.getGravityFactorText ();
 		this.liveText.text = "Lives: " + this.numberOfLives;
+        this.takeDamage(1.0F); //start damage
 	}
 
 	void FixedUpdate ()
