@@ -10,6 +10,8 @@ public class Bullet2 : MonoBehaviour
     private GameObject owner;
     private PhysicsBehaviour pb;
 
+    public AudioClip[] MooAudioClips;
+
     private float lifeSpan, spawnTime;
 
     private float RecoilCoefficient; //higher value means that WE will fly backwards more quickly
@@ -135,6 +137,21 @@ public class Bullet2 : MonoBehaviour
         {
             Player pc = other.GetComponent<Player>();
             pc.takeDamage(this.Damage);
+            AudioSource[] MooAudioSources = pc.GetComponents<AudioSource>();
+            if(MooAudioClips.Length > 0)
+            {
+                // Pick a sound
+                int i = Random.Range(0, MooAudioClips.Length);
+                AudioClip sound = MooAudioClips[i];
+                MooAudioSources[0].clip = sound;
+
+                // Configure that sound
+                MooAudioSources[0].volume = 1F;
+
+                // Play that sound
+                MooAudioSources[0].Play();
+
+            }
             Destroy(This);
         }
     }
