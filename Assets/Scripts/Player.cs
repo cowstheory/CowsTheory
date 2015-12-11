@@ -48,8 +48,10 @@ public class Player : MonoBehaviour
 		weaponFireSources [0].clip = audioClips [0];
 		weaponFireSources [1].clip = audioClips [1];
 
-		weaponFireSources [0].volume = 0.065F;
-		weaponFireSources [1].volume = 0.065F;
+		//weaponFireSources [0].volume = 0.065F;
+		//weaponFireSources [1].volume = 0.065F;
+		weaponFireSources [0].volume = 0.007F;
+		weaponFireSources [1].volume = 0.007F;
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;

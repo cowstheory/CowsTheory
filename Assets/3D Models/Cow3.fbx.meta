@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: cb8b59d1b9d184f06bd2e6fbf36d5896
-timeCreated: 1449827287
+guid: 1a02d8c50a6232645ad0e6add49c5a30
+timeCreated: 1449827194
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -182,10 +182,10 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
-    motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
+    motionNodeName:
+    animationImportErrors:
+    animationImportWarnings:
+    animationRetargetingWarnings:
     animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
@@ -229,12 +229,12 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName:
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:

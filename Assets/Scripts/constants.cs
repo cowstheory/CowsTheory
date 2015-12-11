@@ -10,7 +10,7 @@ public static class con {
     public static int NUM_PLAYER_LIVES = 3;
 
 	public static Vector3 PLAYER1_SPAWN = new Vector3(-35.0F, 13.0F, 1.0F);
-	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, 13.0F, 1.0F);
+	public static Vector3 PLAYER2_SPAWN = new Vector3(35.0F, -13.0F, 1.0F);
 
     public static Color FONT_COLOR = new Color(200, 200, 200);
     public static float BLACK_HOLE_GRAVITY_STRENGTH = 100.0F;
@@ -25,11 +25,10 @@ public static class con {
     public static float GRAVITY_FACTOR_PLAYER_INCREASE_PER_HIT = 0.05F;
 
 	public static float GRAVITY_COEFFICIENT = 0.15F;
-	public static float GRAVITY_EXPONENT = 1.7F;
-
-    public static float BOUNCE_FACTOR_ON_WALLS = -0.9F;
+	public static float GRAVITY_EXPONENT = 2.4F;
+	
     //multiplier: how much stronger will bullet push other players
-    public static float BULLET_COLLISION_MULTIPLIER = 1.0F;
+    public static float BULLET_COLLISION_MULTIPLIER = 0.4F;
 
     public static float PLAYER_DRAG = 0.996F;
     public static int START_NUM_PLAYERS = 2;
