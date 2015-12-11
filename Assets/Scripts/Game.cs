@@ -98,19 +98,20 @@ public class Game : MonoBehaviour{
 			//Time.timeScale = 1;
 		}
 
-			foreach (KeyValuePair<int, int> p in playerLives) { 
-				if (p.Value == 0) {
-					state = "gameover";
-				}
+		foreach (KeyValuePair<int, int> p in playerLives) { 
+			if (p.Value == 0) {
+				state = "gameover";
 			}
-
+		}
 
         if (state == "menu") {
 		} else if (state == "ingame") {
 			handlePowerups ();
-		} else if (state == "gameover") {
+		} else if (state == "gameover") {  
 			foreach (KeyValuePair<int, GameObject> p in players){
-				Destroy (p.Value);
+				if(p.Value != null){
+					Destroy (p.Value);
+				}	
 			}
 			//Time.timeScale = 0;
 		}
