@@ -95,13 +95,15 @@ public class Game : MonoBehaviour{
 	void Update(){
 		if(Input.GetKeyDown(KeyCode.R)){
 			Application.LoadLevel(Application.loadedLevel);
+			//Time.timeScale = 1;
 		}
 
-		foreach (KeyValuePair<int, int> p in playerLives) {
-			if(p.Value == 0){
-				state = "gameover";
+			foreach (KeyValuePair<int, int> p in playerLives) { 
+				if (p.Value == 0) {
+					state = "gameover";
+				}
 			}
-		}
+
 
         if (state == "menu") {
 		} else if (state == "ingame") {
@@ -110,7 +112,7 @@ public class Game : MonoBehaviour{
 			foreach (KeyValuePair<int, GameObject> p in players){
 				Destroy (p.Value);
 			}
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 		}
 		else {
             Debug.Log("Unknown state '" + state + "'");
