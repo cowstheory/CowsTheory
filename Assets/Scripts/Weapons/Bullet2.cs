@@ -138,21 +138,26 @@ public class Bullet2 : MonoBehaviour
             Player pc = other.GetComponent<Player>();
             pc.takeDamage(this.Damage);
             AudioSource[] MooAudioSources = pc.GetComponents<AudioSource>();
-            if(MooAudioClips.Length > 0)
+            if(MooAudioClips.Length > 0 && Random.Range(0, 8) == 0)
             {
                 // Pick a sound
-                int i = Random.Range(0, MooAudioClips.Length);
+                int i = Random.Range(2, MooAudioClips.Length);
                 AudioClip sound = MooAudioClips[i];
-                MooAudioSources[0].clip = sound;
+                MooAudioSources[1].clip = sound;
 
                 // Configure that sound
-                MooAudioSources[0].volume = 1F;
+                MooAudioSources[1].volume = 1F;
 
                 // Play that sound
-                MooAudioSources[0].Play();
+                MooAudioSources[1].Play();
 
+				//Debug.Log("Played sound!");
+
+				//MooAudioSources[0].clip = MooAudioClips[0];
             }
             Destroy(This);
         }
+
+
     }
 }

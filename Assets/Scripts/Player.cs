@@ -48,8 +48,10 @@ public class Player : MonoBehaviour
 		weaponFireSources [0].clip = audioClips [0];
 		weaponFireSources [1].clip = audioClips [1];
 
-		weaponFireSources [0].volume = 0.065F;
-		weaponFireSources [1].volume = 0.065F;
+		//weaponFireSources [0].volume = 0.065F;
+		//weaponFireSources [1].volume = 0.065F;
+		weaponFireSources [0].volume = 0.007F;
+		weaponFireSources [1].volume = 0.007F;
 
 		currentWeapons [0] = WeaponType.MACHINEGUN;
 		currentWeapons [1] = WeaponType.SHOTGUN;
@@ -148,7 +150,7 @@ public class Player : MonoBehaviour
 			Bullet2 b = other.GetComponent<Bullet2> ();
 			if (b.getOwnerId () != this.id) {
 				//m1v1 = m2v2 => v1 = m2v2/m1 = (m2/m1)v2
-				rb.velocity += 0.3F * con.BULLET_COLLISION_MULTIPLIER *
+				rb.velocity += con.BULLET_COLLISION_MULTIPLIER *
 					(other.attachedRigidbody.mass / this.rb.mass) *
                     other.attachedRigidbody.velocity *
                     this.pb.getGravityFactor(); //pushed away further if we have a higher gf

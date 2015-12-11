@@ -34,7 +34,8 @@ public class Game : MonoBehaviour{
 		keyboards = new Dictionary<int, Controller> ();
 		spawnPositions = new Dictionary<int, Vector3>();
 
-        state = "menu";
+        //state = "menu";
+		state = "ingame";
 
 		powerupObjects = new List<GameObject>();
 
