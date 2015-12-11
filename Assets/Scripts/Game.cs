@@ -93,6 +93,16 @@ public class Game : MonoBehaviour{
 	}
 
 	void Update(){
+
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			GameObject playerHips = players[1].transform.Find ("metarig/hips/spine").gameObject;
+			playerHips.GetComponent<Player>().takeDamage(0.1F);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			GameObject playerHips = players[2].transform.Find ("metarig/hips/spine").gameObject;
+			playerHips.GetComponent<Player>().takeDamage(0.1F);
+        }
+
 		if(Input.GetKeyDown(KeyCode.R)){
 			Application.LoadLevel(Application.loadedLevel);
 			//Time.timeScale = 1;

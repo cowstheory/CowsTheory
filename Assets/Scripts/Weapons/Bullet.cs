@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour {
         return -velocityChange * mass * recoilCoefficient;
     }
 
-    public float getMass(){
+    public float getMass() {
         return mass;
     }
 
@@ -68,6 +68,8 @@ public class Bullet : MonoBehaviour {
         if (ownerId != other.gameObject.GetComponent<Player>().getId() && other.tag == "Player") {
             Player pc = other.GetComponent<Player>();
             pc.takeDamage(damage);
+			//TODO: take damage sound effect
+
             Destroy(go);
         }
     }
