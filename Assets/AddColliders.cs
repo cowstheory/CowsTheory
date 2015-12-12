@@ -31,9 +31,9 @@ public class AddColliders : MonoBehaviour {
 			valPair.Value.parent = transform; //Make the object a child of whatever object this script is on (preferably the camera)
 			
 			if(valPair.Key == "Left" || valPair.Key == "Right") //Scale the object to the width and height of the screen, using the world-space values calculated earlier
-				valPair.Value.localScale = new Vector3(colThickness, screenSize.y * 2, colThickness);
+				valPair.Value.localScale = new Vector3(colThickness, screenSize.y * 2, 10*colThickness);
 			else
-				valPair.Value.localScale = new Vector3(screenSize.x * 2, colThickness, colThickness);
+				valPair.Value.localScale = new Vector3(screenSize.x * 2, 10*colThickness, colThickness);
 		}  
 		//Change positions to align perfectly with outter-edge of screen, adding the world-space values of the screen we generated earlier, and adding/subtracting them with the current camera position, as well as add/subtracting half out objects size so it's not just half way off-screen
 		colliders["Right"].position = new Vector3(cameraPos.x + screenSize.x + (colliders["Right"].localScale.x * 0.5f), cameraPos.y, zPosition);
